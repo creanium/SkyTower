@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-SkyTower.Worker-f09c7805-2854-4215-8ff6-8e300b670174</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1"/>
+        <PackageReference Include="StrictId" Version="1.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SkyTower.Core\SkyTower.Core.csproj" />
+      <ProjectReference Include="..\SkyTower.Infrastructure\SkyTower.Infrastructure.csproj" />
+      <ProjectReference Include="..\SkyTower.UseCases\SkyTower.UseCases.csproj" />
+    </ItemGroup>
+</Project>

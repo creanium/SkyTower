@@ -3,6 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyTower.Core", "src\SkyTower.Core\SkyTower.Core.csproj", "{38A8258C-6B38-4D7E-B07C-A61CC600A4F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8F7119BE-7858-412C-9C84-F0547614B568}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyTower.Infrastructure", "src\SkyTower.Infrastructure\SkyTower.Infrastructure.csproj", "{87B2C992-3BC5-4F8A-981A-90FA043A3E02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyTower.UseCases", "src\SkyTower.UseCases\SkyTower.UseCases.csproj", "{41234BC7-D0B0-46D2-A190-F7C1BE2DEA98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyTower.Worker", "src\SkyTower.Worker\SkyTower.Worker.csproj", "{FA9BA742-84E6-4C14-A425-56B02A970491}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -10,5 +25,23 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38A8258C-6B38-4D7E-B07C-A61CC600A4F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38A8258C-6B38-4D7E-B07C-A61CC600A4F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38A8258C-6B38-4D7E-B07C-A61CC600A4F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38A8258C-6B38-4D7E-B07C-A61CC600A4F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B2C992-3BC5-4F8A-981A-90FA043A3E02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B2C992-3BC5-4F8A-981A-90FA043A3E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B2C992-3BC5-4F8A-981A-90FA043A3E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B2C992-3BC5-4F8A-981A-90FA043A3E02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41234BC7-D0B0-46D2-A190-F7C1BE2DEA98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41234BC7-D0B0-46D2-A190-F7C1BE2DEA98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41234BC7-D0B0-46D2-A190-F7C1BE2DEA98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41234BC7-D0B0-46D2-A190-F7C1BE2DEA98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA9BA742-84E6-4C14-A425-56B02A970491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA9BA742-84E6-4C14-A425-56B02A970491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA9BA742-84E6-4C14-A425-56B02A970491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA9BA742-84E6-4C14-A425-56B02A970491}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
