@@ -57,3 +57,4 @@ nunit-*.xml
 .idea/
 appsettings.json
 .DS_Store
+SkyTower.sln.DotSettings.user

@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyTower.UseCases", "src\Sk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyTower.Worker", "src\SkyTower.Worker\SkyTower.Worker.csproj", "{FA9BA742-84E6-4C14-A425-56B02A970491}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D7557F58-0924-455F-9DF6-2C2E82BBCE10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyTower.UnitTests", "tests\SkyTower.UnitTests\SkyTower.UnitTests.csproj", "{C1117039-F3A4-4251-9C3F-2A36C92B07E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,5 +47,12 @@ Global
 		{FA9BA742-84E6-4C14-A425-56B02A970491}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA9BA742-84E6-4C14-A425-56B02A970491}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA9BA742-84E6-4C14-A425-56B02A970491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1117039-F3A4-4251-9C3F-2A36C92B07E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1117039-F3A4-4251-9C3F-2A36C92B07E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1117039-F3A4-4251-9C3F-2A36C92B07E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1117039-F3A4-4251-9C3F-2A36C92B07E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C1117039-F3A4-4251-9C3F-2A36C92B07E8} = {D7557F58-0924-455F-9DF6-2C2E82BBCE10}
 	EndGlobalSection
 EndGlobal
