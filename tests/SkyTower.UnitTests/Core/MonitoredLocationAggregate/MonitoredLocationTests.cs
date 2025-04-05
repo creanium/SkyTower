@@ -35,6 +35,7 @@ public class MonitoredLocationTests
     }
 	
 	[TestCase("2025-07-01", "2025-07-05", "America/Los_Angeles", -7, "America/New_York", -4)]
+	[TestCase("2025-07-01", "2025-07-05", "America/New_York", -4, "America/St_Johns", -2.5)]
 	public void MonitoredDates_UpdatedWhenChangingLocations(DateTime notBefore, DateTime notAfter, string startTimeZone, double expectedStartOffset, string endTimeZone, double expectedEndOffset)
 	{
 		var foundSourceTimeZone = TimeZoneInfo.TryFindSystemTimeZoneById(startTimeZone, out var sourceTimeZone);
