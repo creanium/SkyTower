@@ -15,11 +15,6 @@ public interface IAuditableEntity
 	public AuditRegister LastModified { get; }
 	
 	/// <summary>
-	/// A flag to set if the entity should skip automated audit. This is useful when the entity is being created or modified by migration.
-	/// </summary>
-	public bool ShouldSkipAutomatedAudit { get; }
-	
-	/// <summary>
 	/// Mark the entity as created by the specified user
 	/// </summary>
 	/// <param name="by">The user who created the entity</param>
@@ -31,8 +26,4 @@ public interface IAuditableEntity
 	/// <param name="by">The user who modified the entity</param>
 	public void SetLastModified(IApplicationUser? by);
 	
-	/// <summary>
-	/// Flags this entity as not needing automated auditing.
-	/// </summary>
-	public void SkipAutomatedAudit();
 }

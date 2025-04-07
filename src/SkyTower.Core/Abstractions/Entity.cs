@@ -4,13 +4,12 @@ using SkyTower.Core.ValueObjects;
 
 namespace SkyTower.Core.Abstractions;
 
-public abstract class Entity<TImplementation> : EntityWithDomainEvents, IEntity<TImplementation>, IAuditableEntity
+public abstract class Entity<TImplementation> : IEntity<TImplementation>, IAuditableEntity, IEqualityComparer<TImplementation> 
+	where TImplementation : Entity<TImplementation>
 {
 	public Id<TImplementation> Id { get; [UsedImplicitly] private set; }
 	public AuditRegister Created { get; private set; } = new(null!, default);
 	public AuditRegister LastModified { get; private set; } = new(null!, default);
-	public bool ShouldSkipAutomatedAudit { get; private set; } = false;
-	public int? LegacyId { get; private set; } 
 
 	public void SetCreated(IApplicationUser? by)
 	{
@@ -28,17 +27,33 @@ public abstract class Entity<TImplementation> : EntityWithDomainEvents, IEntity<
 		LastModified = new AuditRegister(by?.Email ?? string.Empty, DateTimeOffset.UtcNow);
 	}
 
-	public void SkipAutomatedAudit()
+	public virtual bool Equals(TImplementation? x, TImplementation? y)
 	{
-		ShouldSkipAutomatedAudit = true;
+		if (x is null || y is null) return false;
+		if (ReferenceEquals(x, y)) return true;
+		if (x.GetType() != GetType()) return false;
+		if (y.GetType() != GetType()) return false;
+		
+		return x.Id == y.Id;
 	}
 
-	public void SetLegacyId(int legacyId, AuditRegister created, AuditRegister modified)
+	public override bool Equals(object? obj)
 	{
-		SkipAutomatedAudit();
-		
-		Created = created;
-		LastModified = modified;
-		LegacyId = legacyId;
+		if (obj is null) return false;
+		if (ReferenceEquals(this, obj)) return true;
+		if (obj.GetType() != GetType()) return false;
+
+		return Id == ((TImplementation)obj).Id;
+	}
+
+	public int GetHashCode(TImplementation obj)
+	{
+		return obj.Id.GetHashCode();
+	}
+
+	public override int GetHashCode()
+	{
+		// ReSharper disable once NonReadonlyMemberInGetHashCode
+		return Id.GetHashCode();
 	}
 }
