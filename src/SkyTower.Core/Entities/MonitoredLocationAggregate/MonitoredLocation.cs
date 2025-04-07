@@ -1,12 +1,14 @@
 using Ardalis.GuardClauses;
 using JetBrains.Annotations;
+using SkyTower.Core.Abstractions;
 using SkyTower.Core.Entities.LocationAggregate;
 using SkyTower.Core.Entities.UserAggregate;
+using SkyTower.Core.Enums;
 using SkyTower.Core.Interfaces;
 
 namespace SkyTower.Core.Entities.MonitoredLocationAggregate;
 
-public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) : IAggregateRoot
+public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) : Entity<MonitoredLocation>, IAggregateRoot
 {
 	public Id<Location> LocationId { get; private set; } = Guard.Against.Default(locationId);
 	public Location Location { get; [UsedImplicitly] private set; } = null!;
@@ -46,6 +48,9 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 	/// Indicates whether this location should be monitored for Convective Outlooks.
 	/// </summary>
 	public bool MesoscaleDiscussionMonitoringEnabled { get; private set; }
+
+	private List<DigestSubscription> _digestSubscriptions = [];
+	public IReadOnlyCollection<DigestSubscription> DigestSubscriptions => _digestSubscriptions.AsReadOnly(); 
 
 	/// <summary>
 	/// Enables overall monitoring for this location.
@@ -126,6 +131,22 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 			NotAfterDate = new DateTimeOffset(localEndDate, offset);
 		}
 
+		return this;
+	}
+	
+	public MonitoredLocation AddDigestSubscription(DaysOfWeek daysToSend, TimeOnly sendTime)
+	{
+		var subscription = new DigestSubscription(this, daysToSend, sendTime);
+		_digestSubscriptions.Add(subscription);
+		
+		return this;
+	}
+	
+	public MonitoredLocation RemoveDigestSubscription(DigestSubscription subscription)
+	{
+		Guard.Against.Null(subscription, message: "Cannot remove a null subscription.");
+		_digestSubscriptions.Remove(subscription);
+		
 		return this;
 	}
 }
