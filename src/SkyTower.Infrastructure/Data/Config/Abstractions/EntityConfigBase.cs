@@ -1,3 +1,5 @@
+using Ardalis.GuardClauses;
+using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SkyTower.Core.Abstractions;
@@ -5,6 +7,7 @@ using StrictId.EFCore;
 
 namespace SkyTower.Infrastructure.Data.Config.Abstractions;
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithInheritors)]
 public abstract class EntityConfigBase<TImplementation> : IEntityTypeConfiguration<TImplementation>
 	where TImplementation : Entity<TImplementation>
 {
@@ -14,6 +17,8 @@ public abstract class EntityConfigBase<TImplementation> : IEntityTypeConfigurati
 	/// <param name="builder"></param>
 	public void Configure(EntityTypeBuilder<TImplementation> builder)
 	{
+		Guard.Against.Null(builder);
+		
 		builder.HasKey(d => d.Id);
 		builder.Property(d => d.Id)
 			.ValueGeneratedOnAdd()

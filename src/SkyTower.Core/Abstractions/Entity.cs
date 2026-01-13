@@ -46,9 +46,9 @@ public abstract class Entity<TImplementation> : IEntity<TImplementation>, IAudit
 		return Id == ((TImplementation)obj).Id;
 	}
 
-	public int GetHashCode(TImplementation obj)
+	public int GetHashCode(TImplementation? obj)
 	{
-		return obj.Id.GetHashCode();
+		return obj?.Id.GetHashCode() ?? throw new ArgumentNullException(nameof(obj));
 	}
 
 	public override int GetHashCode()

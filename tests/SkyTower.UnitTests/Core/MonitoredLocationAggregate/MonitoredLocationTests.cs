@@ -6,7 +6,7 @@ using StrictId;
 namespace SkyTower.UnitTests.Core.MonitoredLocationAggregate;
 
 [TestFixture]
-public class MonitoredLocationTests
+internal sealed class MonitoredLocationTests
 {
 	[TestCase("2025-03-03", "2025-03-13", -7, -6)]
 	[TestCase("2025-10-31", "2025-11-05", -6, -7)]

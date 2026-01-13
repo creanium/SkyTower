@@ -1,5 +1,6 @@
 using System.Net.Mail;
 using System.Reflection;
+using Ardalis.GuardClauses;
 using Microsoft.EntityFrameworkCore;
 using SkyTower.Infrastructure.Data.ValueConverters;
 using StrictId.EFCore;
@@ -10,12 +11,16 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 {
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
+		Guard.Against.Null(modelBuilder);
+		
 		base.OnModelCreating(modelBuilder);
 		modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 	}
 	
 	protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
 	{
+		Guard.Against.Null(configurationBuilder);
+		
 		base.ConfigureConventions(configurationBuilder);
 
 		configurationBuilder.ConfigureStrictId();

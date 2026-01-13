@@ -4,7 +4,7 @@ using SkyTower.Infrastructure.Data.Config.Abstractions;
 
 namespace SkyTower.Infrastructure.Data.Config;
 
-public class LocationConfig : EntityConfigBase<Location>
+public sealed class LocationConfig : EntityConfigBase<Location>
 {
 	protected override void ApplyAdditionalConfiguration(EntityTypeBuilder<Location> builder)
 	{

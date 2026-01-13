@@ -55,7 +55,7 @@ public abstract class ValueObject : IEquatable<ValueObject>
 		return Equals(f.GetValue(this), f.GetValue(obj));
 	}
 
-	private IEnumerable<PropertyInfo> GetProperties()
+	private List<PropertyInfo> GetProperties()
 	{
 		if (_properties == null)
 		{

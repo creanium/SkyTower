@@ -1,10 +1,11 @@
+using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SkyTower.Core.Entities.UserAggregate;
 using SkyTower.Infrastructure.Data.Config.Abstractions;
 
 namespace SkyTower.Infrastructure.Data.Config;
 
-public class UserConfig : EntityConfigBase<User>
+public sealed class UserConfig : EntityConfigBase<User>
 {
 	protected override void ApplyAdditionalConfiguration(EntityTypeBuilder<User> builder)
 	{

@@ -1,5 +1,6 @@
 namespace SkyTower.Core.Interfaces;
 
+#pragma warning disable CA1040
 public interface IAggregateRoot
 {	
 	// This interface is a marker interface for aggregate roots in the domain model.

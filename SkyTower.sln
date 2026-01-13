@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		README.md = README.md
 		LICENSE = LICENSE
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyTower.Infrastructure", "src\SkyTower.Infrastructure\SkyTower.Infrastructure.csproj", "{87B2C992-3BC5-4F8A-981A-90FA043A3E02}"
@@ -19,6 +21,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyTower.Worker", "src\SkyTower.Worker\SkyTower.Worker.csproj", "{FA9BA742-84E6-4C14-A425-56B02A970491}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D7557F58-0924-455F-9DF6-2C2E82BBCE10}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Packages.props = tests\Directory.Packages.props
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyTower.UnitTests", "tests\SkyTower.UnitTests\SkyTower.UnitTests.csproj", "{C1117039-F3A4-4251-9C3F-2A36C92B07E8}"
 EndProject
