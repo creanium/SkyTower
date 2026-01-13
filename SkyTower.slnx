@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
+    <File Path="compose.yaml" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
     <File Path="LICENSE" />
@@ -13,5 +14,6 @@
   <Project Path="src/SkyTower.Core/SkyTower.Core.csproj" />
   <Project Path="src/SkyTower.Infrastructure/SkyTower.Infrastructure.csproj" />
   <Project Path="src/SkyTower.UseCases/SkyTower.UseCases.csproj" />
+  <Project Path="src/SkyTower.WebApi/SkyTower.WebApi.csproj" />
   <Project Path="src/SkyTower.Worker/SkyTower.Worker.csproj" />
 </Solution>

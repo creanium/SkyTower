@@ -1,0 +1,7 @@
+﻿services:
+  skytower.webapi:
+    image: skytower.webapi
+    build:
+      context: .
+      dockerfile: src/SkyTower.WebApi/Dockerfile
+
