@@ -8,6 +8,7 @@ public static class AppDbContextExtensions
 	public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, string connectionString) =>
 		services.AddDbContext<AppDbContext>(options =>
 		{
-			options.UseNpgsql(connectionString, x => x.UseNetTopologySuite());
+			options.UseNpgsql(connectionString, x => x.UseNetTopologySuite())
+				.UseSnakeCaseNamingConvention();
 		});
 }

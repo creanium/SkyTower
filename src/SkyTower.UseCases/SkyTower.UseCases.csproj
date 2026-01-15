@@ -3,5 +3,9 @@
     <ItemGroup>
         <ProjectReference Include="..\SkyTower.Core\SkyTower.Core.csproj"/>
     </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="MediatR" />
+    </ItemGroup>
 
 </Project>

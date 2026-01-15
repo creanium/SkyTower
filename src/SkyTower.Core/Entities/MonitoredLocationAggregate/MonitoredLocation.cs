@@ -49,7 +49,7 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 	/// </summary>
 	public bool MesoscaleDiscussionMonitoringEnabled { get; private set; }
 
-	private List<DigestSubscription> _digestSubscriptions = [];
+	private readonly List<DigestSubscription> _digestSubscriptions = [];
 	public IReadOnlyCollection<DigestSubscription> DigestSubscriptions => _digestSubscriptions.AsReadOnly(); 
 
 	/// <summary>

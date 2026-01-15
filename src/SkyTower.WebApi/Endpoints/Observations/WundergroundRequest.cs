@@ -103,31 +103,31 @@ internal sealed class WundergroundRequest
 	/// rainin - [rain inches over the past hour)] -- the accumulated rainfall in the past 60 min
 	/// </summary>
 	[QueryParam, BindFrom("rainin")]
-	public double RainInchesPastHour { get; set; }
+	public double? RainInchesPastHour { get; set; }
 
 	/// <summary>
 	/// dailyrainin - [rain inches so far today in local time]
 	/// </summary>
 	[QueryParam, BindFrom("dailyrainin")]
-	public double DailyRainInches { get; set; }
+	public double? DailyRainInches { get; set; }
 
 	/// <summary>
 	/// baromin - [barometric pressure inches]
 	/// </summary>
 	[QueryParam, BindFrom("baromin")]
-	public double BarometricPressureInches { get; set; }
+	public double? BarometricPressureInches { get; set; }
 
 	/// <summary>
 	/// weather - [text] -- metar style (+RA)
 	/// </summary>
 	[QueryParam, BindFrom("weather")]
-	public string MetarWeather { get; set; }
+	public string? MetarWeather { get; set; }
 
 	/// <summary>
 	/// clouds - [text] -- SKC, FEW, SCT, BKN, OVC
 	/// </summary>
 	[QueryParam, BindFrom("clouds")]
-	public string CloudCover { get; set; }
+	public string? CloudCover { get; set; }
 
 	/// <summary>
 	/// soiltempf - [F soil temperature]

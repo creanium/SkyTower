@@ -5,7 +5,7 @@
         <PackageReference Include="Ardalis.Result"/>
         <PackageReference Include="Ardalis.Specification"/>
         <PackageReference Include="JetBrains.Annotations"/>
-        <PackageReference Include="MediatR"/>
+        <PackageReference Include="MediatR.Contracts" />
         <PackageReference Include="NetTopologySuite"/>
     </ItemGroup>
 

@@ -18,4 +18,9 @@
       <PackageReference Include="JetBrains.Annotations" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SkyTower.Infrastructure\SkyTower.Infrastructure.csproj" />
+      <ProjectReference Include="..\SkyTower.UseCases\SkyTower.UseCases.csproj" />
+    </ItemGroup>
+
 </Project>
