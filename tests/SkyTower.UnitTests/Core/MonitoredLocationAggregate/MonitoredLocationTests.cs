@@ -16,8 +16,7 @@ internal sealed class MonitoredLocationTests
 		Assert.That(foundTimeZone, Is.True, "Did not find America/Denver time zone");
 		
 		var location = new Location("Denver", 39.7392, -104.9903, timeZone!);
-		var monitoredLocation = new MonitoredLocation(Id<Location>.NewId(), Id<User>.NewId());
-		monitoredLocation.SetLocation(location);
+		var monitoredLocation = new MonitoredLocation(location, new User());
 		Assert.That(monitoredLocation.Location, Is.EqualTo(location));
 		
 		monitoredLocation.SetMonitoringDates(DateOnly.FromDateTime(notBefore), DateOnly.FromDateTime(notAfter));
@@ -36,19 +35,14 @@ internal sealed class MonitoredLocationTests
 	
 	[TestCase("2025-07-01", "2025-07-05", "America/Los_Angeles", -7, "America/New_York", -4)]
 	[TestCase("2025-07-01", "2025-07-05", "America/New_York", -4, "America/St_Johns", -2.5)]
-	public void MonitoredDates_UpdatedWhenChangingLocations(DateTime notBefore, DateTime notAfter, string startTimeZone, double expectedStartOffset, string endTimeZone, double expectedEndOffset)
+	public void MonitoredDates_UpdatedWhenChangingDates(DateTime notBefore, DateTime notAfter, string startTimeZone, double expectedStartOffset, string endTimeZone, double expectedEndOffset)
 	{
 		var foundSourceTimeZone = TimeZoneInfo.TryFindSystemTimeZoneById(startTimeZone, out var sourceTimeZone);
 		Assert.That(foundSourceTimeZone, Is.True, $"Did not find {startTimeZone} time zone");
 		
-		var foundDestinationTimeZone = TimeZoneInfo.TryFindSystemTimeZoneById(endTimeZone, out var destinationTimeZone);
-		Assert.That(foundDestinationTimeZone, Is.True, $"Did not find {endTimeZone} time zone");
-		
 		var firstLocation = new Location("Los Baños", 37.058333, -120.85, sourceTimeZone!);
-		var secondLocation = new Location("Bread Loaf", 43.953333, -72.9925, destinationTimeZone!);
 		
-		var monitoredLocation = new MonitoredLocation(Id<Location>.NewId(), Id<User>.NewId());
-		monitoredLocation.SetLocation(firstLocation);
+		var monitoredLocation = new MonitoredLocation(firstLocation, new User());
 		Assert.That(monitoredLocation.Location, Is.EqualTo(firstLocation));
 		
 		monitoredLocation.SetMonitoringDates(DateOnly.FromDateTime(notBefore), DateOnly.FromDateTime(notAfter));
@@ -63,14 +57,6 @@ internal sealed class MonitoredLocationTests
 		{
 			Assert.That(monitoredLocation.NotBeforeDate.Value.Offset, Is.EqualTo(TimeSpan.FromHours(expectedStartOffset)));
 			Assert.That(monitoredLocation.NotAfterDate.Value.Offset, Is.EqualTo(TimeSpan.FromHours(expectedStartOffset)));
-		});
-		
-		monitoredLocation.SetLocation(secondLocation);
-        
-		Assert.Multiple(() =>
-		{
-			Assert.That(monitoredLocation.NotBeforeDate.Value.Offset, Is.EqualTo(TimeSpan.FromHours(expectedEndOffset)));
-			Assert.That(monitoredLocation.NotAfterDate.Value.Offset, Is.EqualTo(TimeSpan.FromHours(expectedEndOffset)));
 		});
 	}
 }

@@ -1,10 +1,11 @@
 using Ardalis.GuardClauses;
+using Ardalis.SharedKernel;
 using JetBrains.Annotations;
 using SkyTower.Core.Abstractions;
 using SkyTower.Core.Entities.LocationAggregate;
 using SkyTower.Core.Entities.UserAggregate;
 using SkyTower.Core.Enums;
-using SkyTower.Core.Interfaces;
+using SkyTower.Core.Exceptions;
 
 namespace SkyTower.Core.Entities.MonitoredLocationAggregate;
 
@@ -42,16 +43,24 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 	/// <summary>
 	/// Indicates whether this location should be monitored for Convective Outlooks.
 	/// </summary>
-	public bool ConvectiveOutlookMonitoringEnabled { get; private set; }
+	public bool ShouldMonitorConvectiveOutlooks { get; private set; }
 	
 	/// <summary>
 	/// Indicates whether this location should be monitored for Convective Outlooks.
 	/// </summary>
-	public bool MesoscaleDiscussionMonitoringEnabled { get; private set; }
+	public bool ShouldMonitorMesoscaleDiscussions { get; private set; }
 
 	private readonly List<DigestSubscription> _digestSubscriptions = [];
-	public IReadOnlyCollection<DigestSubscription> DigestSubscriptions => _digestSubscriptions.AsReadOnly(); 
+	public IReadOnlyCollection<DigestSubscription> DigestSubscriptions => _digestSubscriptions.AsReadOnly();
 
+	public MonitoredLocation(Location location, User user) : this(Guard.Against.Null(location).Id, Guard.Against.Null(user).Id)
+	{
+		Location = Guard.Against.Null(location, message: "Location is null.");
+		User = Guard.Against.Null(user, message: "User is null.");
+		LocationId = location.Id;
+		UserId = user.Id;
+	}
+	
 	/// <summary>
 	/// Enables overall monitoring for this location.
 	/// </summary>
@@ -70,7 +79,7 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 	/// <returns>This instance</returns>
 	public MonitoredLocation SetConvectiveOutlookMonitoringEnabled(bool isEnabled)
 	{
-		ConvectiveOutlookMonitoringEnabled = isEnabled;
+		ShouldMonitorConvectiveOutlooks = isEnabled;
 		return this;
 	}
 	
@@ -81,19 +90,8 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 	/// <returns>This instance</returns>
 	public MonitoredLocation SetMesoscaleDiscussionMonitoringEnabled(bool isEnabled)
 	{
-		MesoscaleDiscussionMonitoringEnabled = isEnabled;
+		ShouldMonitorMesoscaleDiscussions = isEnabled;
 		return this;
-	}
-
-	/// <summary>
-	/// Changes the location for this monitored location.
-	/// </summary>
-	/// <param name="location"></param>
-	/// <returns></returns>
-	public MonitoredLocation SetLocation(Location location)
-	{
-		Location = Guard.Against.Default(location);
-		return RecalculateMonitoringDates();
 	}
 
 	private MonitoredLocation RecalculateMonitoringDates()
@@ -136,15 +134,40 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 	
 	public MonitoredLocation AddDigestSubscription(DaysOfWeek daysToSend, TimeOnly sendTime)
 	{
+		// Ensure no existing subscription matches the same days and time
+		foreach (var existingSubscription in _digestSubscriptions)
+		{
+			foreach (var dayOfWeek in Enum.GetValues<DaysOfWeek>())
+			{
+				if (daysToSend.HasFlag(dayOfWeek) && existingSubscription.DaysToSend.HasFlag(dayOfWeek)
+				    && existingSubscription.SendTime == sendTime)
+				{
+					throw new ArgumentException($"A digest subscription already exists for {dayOfWeek} at {sendTime}.");
+				}
+			}
+		}
+
 		var subscription = new DigestSubscription(this, daysToSend, sendTime);
 		_digestSubscriptions.Add(subscription);
 		
 		return this;
 	}
 	
-	public MonitoredLocation RemoveDigestSubscription(DigestSubscription subscription)
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="subscriptionId"></param>
+	/// <returns></returns>
+	/// <exception cref="ArgumentException">Thrown if <paramref name="subscriptionId"/> is the default value</exception>
+	/// <exception cref="EntityNotFoundException{TEntity}">Thrown if a subscription matching <paramref name="subscriptionId"/> does not exist for this monitored location</exception>
+	public MonitoredLocation RemoveDigestSubscription(Id<DigestSubscription> subscriptionId)
 	{
-		Guard.Against.Null(subscription, message: "Cannot remove a null subscription.");
+		Guard.Against.Default(subscriptionId, message: "A valid subscription ID was not provided.");
+		var subscription = _digestSubscriptions.Find(s => s.Id == subscriptionId);
+		
+		Guard.Against.Default(subscription, message: $"No digest subscription found with ID {subscriptionId}.", 
+			exceptionCreator: () => new EntityNotFoundException<DigestSubscription>(subscriptionId));
+		
 		_digestSubscriptions.Remove(subscription);
 		
 		return this;

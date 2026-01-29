@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SkyTower.Core.Entities.UserAggregate;
 using SkyTower.Infrastructure.Data.Config.Abstractions;

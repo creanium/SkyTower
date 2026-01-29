@@ -5,6 +5,7 @@
     </ItemGroup>
     
     <ItemGroup>
+      <PackageReference Include="Ardalis.SharedKernel" />
       <PackageReference Include="MediatR" />
     </ItemGroup>
 

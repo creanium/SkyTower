@@ -1,6 +1,6 @@
 using System.Net.Mail;
+using Ardalis.SharedKernel;
 using SkyTower.Core.Abstractions;
-using SkyTower.Core.Interfaces;
 
 namespace SkyTower.Core.Entities.UserAggregate;
 
