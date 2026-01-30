@@ -1,12 +1,7 @@
-using Ardalis.GuardClauses;
-using Ardalis.Result;
-using Ardalis.SharedKernel;
 using SkyTower.Core.Entities.MonitoredLocationAggregate;
 using SkyTower.Core.Entities.MonitoredLocationAggregate.Specifications;
-using SkyTower.Core.Exceptions;
-using SkyTower.UseCases.Messaging;
 
-namespace SkyTower.UseCases.MonitoredLocations;
+namespace SkyTower.UseCases.MonitoredLocations.RemoveDigestSubscription;
 
 public class RemoveDigestSubscriptionCommandHandler(IRepository<MonitoredLocation> monitoredLocationRepository) : ICommandHandler<RemoveDigestSubscriptionCommand>
 {
