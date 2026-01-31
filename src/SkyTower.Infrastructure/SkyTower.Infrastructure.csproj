@@ -8,10 +8,12 @@
     <ItemGroup>
         <PackageReference Include="Ardalis.SharedKernel" />
         <PackageReference Include="EFCore.NamingConventions" />
+        <PackageReference Include="GeoTimeZone" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" />
         <PackageReference Include="StrictId.EFCore" />
+        <PackageReference Include="TimeZoneConverter" />
     </ItemGroup>
 
 </Project>

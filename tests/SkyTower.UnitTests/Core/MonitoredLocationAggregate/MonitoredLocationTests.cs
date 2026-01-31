@@ -1,7 +1,6 @@
 using SkyTower.Core.Entities.LocationAggregate;
 using SkyTower.Core.Entities.MonitoredLocationAggregate;
 using SkyTower.Core.Entities.UserAggregate;
-using StrictId;
 
 namespace SkyTower.UnitTests.Core.MonitoredLocationAggregate;
 

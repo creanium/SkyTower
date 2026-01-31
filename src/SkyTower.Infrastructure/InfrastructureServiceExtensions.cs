@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SkyTower.Core.Interfaces;
+using SkyTower.Infrastructure.Geo;
 
 namespace SkyTower.Infrastructure;
 
@@ -6,6 +8,8 @@ public static class InfrastructureServiceExtensions
 {
 	public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
 	{
+		services.AddTransient<IGeospatialDataProvider, GeospatialDataProvider>();
+		
 		return services;
 	}
 }

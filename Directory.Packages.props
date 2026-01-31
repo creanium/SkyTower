@@ -9,6 +9,7 @@
     <PackageVersion Include="Ardalis.Specification" Version="9.3.1" />
     <PackageVersion Include="EFCore.NamingConventions" Version="10.0.1" />
     <PackageVersion Include="FastEndpoints" Version="7.2.0" />
+    <PackageVersion Include="GeoTimeZone" Version="6.1.0" />
     <PackageVersion Include="JetBrains.Annotations" Version="2025.2.4" />
     <PackageVersion Include="MediatR" Version="14.0.0" />
     <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
@@ -20,5 +21,6 @@
     <PackageVersion Include="StrictId" Version="1.2.0" />
     <PackageVersion Include="StrictId.EFCore" Version="1.2.0" />
     <PackageVersion Include="NetTopologySuite" Version="2.6.0" />
+    <PackageVersion Include="TimeZoneConverter" Version="7.2.0" />
   </ItemGroup>
 </Project>

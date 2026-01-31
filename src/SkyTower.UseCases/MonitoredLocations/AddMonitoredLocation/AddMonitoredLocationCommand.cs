@@ -4,4 +4,11 @@ using SkyTower.Core.Entities.UserAggregate;
 
 namespace SkyTower.UseCases.MonitoredLocations.AddMonitoredLocation;
 
-public record AddMonitoredLocationCommand(Id<Location> LocationId, Id<User> UserId) : ICommand<Result<Id<MonitoredLocation>>>;
+public sealed record AddMonitoredLocationCommand(
+	Id<Location> LocationId,
+	Id<User> UserId,
+	bool ShouldMonitorConvectiveOutlooks,
+	bool ShouldMonitorMesoscaleDiscussions,
+	DateOnly? MonitoringStartDate = null,
+	DateOnly? MonitoringEndDate = null
+) : ICommand<Id<MonitoredLocation>>;
