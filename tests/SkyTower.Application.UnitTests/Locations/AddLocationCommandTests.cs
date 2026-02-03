@@ -14,7 +14,7 @@ internal sealed class AddLocationCommandTests
 {
 	private readonly List<Location> Locations = [];
 	private readonly IRepository<Location> _locationRepository = Substitute.For<IRepository<Location>>();
-	private readonly IGeospatialDataProvider _geospatialDataProvider = Substitute.For<IGeospatialDataProvider>();
+	private readonly ITimeZoneDataProvider _timeZoneDataProvider = Substitute.For<ITimeZoneDataProvider>();
 	
 	[OneTimeSetUp]
 	public void OneTimeSetUp()
@@ -42,12 +42,12 @@ internal sealed class AddLocationCommandTests
 	[TestCase(38.8727332, -77.0074815, "America/New_York")]
 	public async Task AddLocation_DeterminesTimeZone(double latitude, double longitude, string expectedTimeZoneId)
 	{
-		_geospatialDataProvider.GetTimeZoneInfo(latitude, longitude)
+		_timeZoneDataProvider.GetTimeZoneInfo(latitude, longitude)
 			.Returns(Result<TimeZoneInfo>.Success(TimeZoneInfo.FindSystemTimeZoneById(expectedTimeZoneId)));
 		
 		var command = new AddLocationCommand("Test Location", latitude, longitude);
 		
-		var response = await new AddLocationCommandHandler(_locationRepository, _geospatialDataProvider)
+		var response = await new AddLocationCommandHandler(_locationRepository, _timeZoneDataProvider)
 			.Handle(command, CancellationToken.None)
 			.ConfigureAwait(false);
 		

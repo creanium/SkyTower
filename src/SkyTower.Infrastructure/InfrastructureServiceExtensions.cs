@@ -8,7 +8,7 @@ public static class InfrastructureServiceExtensions
 {
 	public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
 	{
-		services.AddTransient<IGeospatialDataProvider, GeospatialDataProvider>();
+		services.AddTransient<ITimeZoneDataProvider, TimeZoneDataProvider>();
 		
 		return services;
 	}

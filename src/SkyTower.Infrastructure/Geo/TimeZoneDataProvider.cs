@@ -7,9 +7,9 @@ using TimeZoneConverter;
 
 namespace SkyTower.Infrastructure.Geo;
 
-public class GeospatialDataProvider(ILogger<GeospatialDataProvider> logger) : IGeospatialDataProvider
+public class TimeZoneDataProvider(ILogger<TimeZoneDataProvider> logger) : ITimeZoneDataProvider
 {
-	public Result<TimeZoneInfo> GetTimeZoneInfo(double latitude, double longitude, CancellationToken cancellationToken = default)
+	public Result<TimeZoneInfo> GetTimeZoneInfo(double latitude, double longitude)
 	{
 		var lookupResult = TimeZoneLookup.GetTimeZone(latitude, longitude);
 

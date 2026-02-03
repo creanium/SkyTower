@@ -4,12 +4,12 @@ using SkyTower.Domain.Interfaces;
 
 namespace SkyTower.Application.Locations.AddLocations;
 
-public class AddLocationCommandHandler(IRepository<Location> repository, IGeospatialDataProvider geospatialDataProvider) : ICommandHandler<AddLocationCommand, Id<Location>>
+public class AddLocationCommandHandler(IRepository<Location> repository, ITimeZoneDataProvider timeZoneDataProvider) : ICommandHandler<AddLocationCommand, Id<Location>>
 {
 	public async Task<Result<Id<Location>>> Handle(AddLocationCommand request, CancellationToken cancellationToken)
 	{
 		Guard.Against.Null(request);
-		var timeZone = geospatialDataProvider.GetTimeZoneInfo(request.Latitude, request.Longitude, cancellationToken);
+		var timeZone = timeZoneDataProvider.GetTimeZoneInfo(request.Latitude, request.Longitude);
 		
 		if (!timeZone.IsSuccess)
 		{
