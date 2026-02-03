@@ -1,4 +1,4 @@
-namespace SkyTower.Domain.Interfaces;
+namespace SkyTower.Domain.Users;
 
 public interface IApplicationUser
 {

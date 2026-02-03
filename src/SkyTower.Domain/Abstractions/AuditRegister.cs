@@ -1,6 +1,4 @@
-using SkyTower.Domain.Abstractions;
-
-namespace SkyTower.Domain.ValueObjects;
+namespace SkyTower.Domain.Abstractions;
 
 public class AuditRegister(string by, DateTimeOffset on) : ValueObject
 {

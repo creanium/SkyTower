@@ -1,6 +1,5 @@
 using JetBrains.Annotations;
-using SkyTower.Domain.Interfaces;
-using SkyTower.Domain.ValueObjects;
+using SkyTower.Domain.Users;
 
 namespace SkyTower.Domain.Abstractions;
 

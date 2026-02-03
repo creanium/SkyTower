@@ -1,6 +1,6 @@
-using SkyTower.Domain.ValueObjects;
+using SkyTower.Domain.Users;
 
-namespace SkyTower.Domain.Interfaces;
+namespace SkyTower.Domain.Abstractions;
 
 public interface IAuditableEntity
 {

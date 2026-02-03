@@ -2,9 +2,9 @@ using Ardalis.GuardClauses;
 using Ardalis.SharedKernel;
 using NetTopologySuite.Geometries;
 using SkyTower.Domain.Abstractions;
-using SkyTower.Domain.Enums;
+using SkyTower.Domain.ConvectiveOutlooks;
 
-namespace SkyTower.Domain.Entities.LocationAggregate;
+namespace SkyTower.Domain.Locations;
 
 public sealed class Location(string name, double latitude, double longitude, TimeZoneInfo timeZone) : Entity<Location>, IAggregateRoot
 {

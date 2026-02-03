@@ -2,7 +2,7 @@ using System.Net.Mail;
 using Ardalis.SharedKernel;
 using SkyTower.Domain.Abstractions;
 
-namespace SkyTower.Domain.Entities.UserAggregate;
+namespace SkyTower.Domain.Users;
 
 public sealed class User : Entity<User>, IAggregateRoot
 {

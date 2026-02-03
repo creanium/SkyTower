@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SkyTower.Domain.Entities.UserAggregate;
+using SkyTower.Domain.Users;
 using SkyTower.Infrastructure.Data.Config.Abstractions;
 
 namespace SkyTower.Infrastructure.Data.Config;

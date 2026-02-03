@@ -2,12 +2,11 @@ using Ardalis.GuardClauses;
 using Ardalis.SharedKernel;
 using JetBrains.Annotations;
 using SkyTower.Domain.Abstractions;
-using SkyTower.Domain.Entities.LocationAggregate;
-using SkyTower.Domain.Entities.UserAggregate;
-using SkyTower.Domain.Enums;
 using SkyTower.Domain.Exceptions;
+using SkyTower.Domain.Locations;
+using SkyTower.Domain.Users;
 
-namespace SkyTower.Domain.Entities.MonitoredLocationAggregate;
+namespace SkyTower.Domain.MonitoredLocations;
 
 public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) : Entity<MonitoredLocation>, IAggregateRoot
 {

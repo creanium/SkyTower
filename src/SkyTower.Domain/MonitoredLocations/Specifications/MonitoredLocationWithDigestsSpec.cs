@@ -1,6 +1,6 @@
 using Ardalis.Specification;
 
-namespace SkyTower.Domain.Entities.MonitoredLocationAggregate.Specifications;
+namespace SkyTower.Domain.MonitoredLocations.Specifications;
 
 public class MonitoredLocationWithDigestsSpec : SingleResultSpecification<MonitoredLocation>
 {

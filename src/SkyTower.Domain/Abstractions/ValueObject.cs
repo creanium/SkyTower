@@ -1,5 +1,4 @@
 using System.Reflection;
-using SkyTower.Domain.Attributes;
 
 namespace SkyTower.Domain.Abstractions;
 

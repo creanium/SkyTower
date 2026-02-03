@@ -1,4 +1,4 @@
-namespace SkyTower.Domain.Enums;
+namespace SkyTower.Domain.MonitoredLocations;
 
 #pragma warning disable S2342
 

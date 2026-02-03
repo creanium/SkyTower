@@ -2,9 +2,8 @@ using System.Reflection;
 using Ardalis.SharedKernel;
 using Ardalis.Result;
 using NSubstitute;
-using SkyTower.Domain.Entities.LocationAggregate;
-using SkyTower.Domain.Interfaces;
 using SkyTower.Application.Locations.AddLocations;
+using SkyTower.Domain.Locations;
 using StrictId;
 
 namespace SkyTower.Application.UnitTests.Locations;

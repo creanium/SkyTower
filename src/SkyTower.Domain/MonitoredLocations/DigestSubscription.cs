@@ -1,7 +1,6 @@
 using SkyTower.Domain.Abstractions;
-using SkyTower.Domain.Enums;
 
-namespace SkyTower.Domain.Entities.MonitoredLocationAggregate;
+namespace SkyTower.Domain.MonitoredLocations;
 
 public class DigestSubscription(MonitoredLocation monitoredLocation, DaysOfWeek daysToSend, TimeOnly sendTime) : Entity<DigestSubscription>
 {

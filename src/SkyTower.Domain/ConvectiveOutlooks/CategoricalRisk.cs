@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace SkyTower.Domain.Enums;
+namespace SkyTower.Domain.ConvectiveOutlooks;
 
 /*
  * Categorical outlooks contain DN attributes which are based on the NDFD

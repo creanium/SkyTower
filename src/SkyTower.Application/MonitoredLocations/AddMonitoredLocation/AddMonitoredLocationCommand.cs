@@ -1,6 +1,6 @@
-﻿using SkyTower.Domain.Entities.LocationAggregate;
-using SkyTower.Domain.Entities.MonitoredLocationAggregate;
-using SkyTower.Domain.Entities.UserAggregate;
+﻿using SkyTower.Domain.Locations;
+using SkyTower.Domain.MonitoredLocations;
+using SkyTower.Domain.Users;
 
 namespace SkyTower.Application.MonitoredLocations.AddMonitoredLocation;
 

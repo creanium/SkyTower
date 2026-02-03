@@ -1,4 +1,4 @@
-namespace SkyTower.Domain.Interfaces;
+namespace SkyTower.Domain.Abstractions;
 
 public interface IEntity<TEntity>
 {

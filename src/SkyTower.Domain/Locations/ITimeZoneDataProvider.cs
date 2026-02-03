@@ -1,6 +1,6 @@
 using Ardalis.Result;
 
-namespace SkyTower.Domain.Interfaces;
+namespace SkyTower.Domain.Locations;
 
 public interface ITimeZoneDataProvider
 {

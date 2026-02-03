@@ -11,8 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Entities\ConvectiveOutlookAggregate\"/>
-        <Folder Include="Entities\MesoscaleDiscussionAggregate\"/>
+        <Folder Include="MesoscaleDiscussions\" />
     </ItemGroup>
 
 </Project>

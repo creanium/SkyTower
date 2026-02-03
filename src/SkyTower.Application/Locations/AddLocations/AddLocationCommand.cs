@@ -1,4 +1,4 @@
-using SkyTower.Domain.Entities.LocationAggregate;
+using SkyTower.Domain.Locations;
 
 namespace SkyTower.Application.Locations.AddLocations;
 

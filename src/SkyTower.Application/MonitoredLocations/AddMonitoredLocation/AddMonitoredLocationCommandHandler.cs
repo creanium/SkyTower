@@ -1,4 +1,4 @@
-﻿using SkyTower.Domain.Entities.MonitoredLocationAggregate;
+﻿using SkyTower.Domain.MonitoredLocations;
 
 namespace SkyTower.Application.MonitoredLocations.AddMonitoredLocation;
 

@@ -1,8 +1,8 @@
 using Ardalis.Result;
-using SkyTower.Domain.Interfaces;
 using GeoTimeZone;
 using Microsoft.Extensions.Logging;
 using SkyTower.Domain.Extensions;
+using SkyTower.Domain.Locations;
 using TimeZoneConverter;
 
 namespace SkyTower.Infrastructure.Geo;
