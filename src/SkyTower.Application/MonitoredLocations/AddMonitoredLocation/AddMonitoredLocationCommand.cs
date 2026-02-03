@@ -1,7 +1,7 @@
 ﻿using SkyTower.Application.Messaging;
-using SkyTower.Core.Entities.LocationAggregate;
-using SkyTower.Core.Entities.MonitoredLocationAggregate;
-using SkyTower.Core.Entities.UserAggregate;
+using SkyTower.Domain.Entities.LocationAggregate;
+using SkyTower.Domain.Entities.MonitoredLocationAggregate;
+using SkyTower.Domain.Entities.UserAggregate;
 
 namespace SkyTower.Application.MonitoredLocations.AddMonitoredLocation;
 

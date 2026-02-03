@@ -9,12 +9,12 @@
   </Folder>
   <Folder Name="/Tests/">
     <File Path="tests/Directory.Packages.props" />
-    <Project Path="tests/SkyTower.UnitTests/SkyTower.UnitTests.csproj" />
     <Project Path="tests\SkyTower.Application.UnitTests\SkyTower.Application.UnitTests.csproj" />
+    <Project Path="tests\SkyTower.Domain.UnitTests\SkyTower.Domain.UnitTests.csproj" />
   </Folder>
-  <Project Path="src/SkyTower.Core/SkyTower.Core.csproj" />
   <Project Path="src/SkyTower.Infrastructure/SkyTower.Infrastructure.csproj" />
   <Project Path="src/SkyTower.WebApi/SkyTower.WebApi.csproj" />
   <Project Path="src/SkyTower.Worker/SkyTower.Worker.csproj" />
   <Project Path="src\SkyTower.Application\SkyTower.Application.csproj" />
+  <Project Path="src\SkyTower.Domain\SkyTower.Domain.csproj" />
 </Solution>

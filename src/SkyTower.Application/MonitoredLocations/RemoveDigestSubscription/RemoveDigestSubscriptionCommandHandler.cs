@@ -1,6 +1,6 @@
 using SkyTower.Application.Messaging;
-using SkyTower.Core.Entities.MonitoredLocationAggregate;
-using SkyTower.Core.Entities.MonitoredLocationAggregate.Specifications;
+using SkyTower.Domain.Entities.MonitoredLocationAggregate;
+using SkyTower.Domain.Entities.MonitoredLocationAggregate.Specifications;
 
 namespace SkyTower.Application.MonitoredLocations.RemoveDigestSubscription;
 

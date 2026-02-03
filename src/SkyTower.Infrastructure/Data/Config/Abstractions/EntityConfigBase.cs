@@ -2,7 +2,7 @@ using Ardalis.GuardClauses;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SkyTower.Core.Abstractions;
+using SkyTower.Domain.Abstractions;
 using StrictId.EFCore;
 
 namespace SkyTower.Infrastructure.Data.Config.Abstractions;

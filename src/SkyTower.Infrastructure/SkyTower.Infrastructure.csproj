@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
-        <ProjectReference Include="..\SkyTower.Core\SkyTower.Core.csproj"/>
+        <ProjectReference Include="..\SkyTower.Domain\SkyTower.Domain.csproj" />
         <ProjectReference Include="..\SkyTower.Application\SkyTower.Application.csproj" />
     </ItemGroup>
 

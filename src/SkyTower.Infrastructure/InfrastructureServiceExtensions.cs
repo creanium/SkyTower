@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SkyTower.Core.Interfaces;
+using SkyTower.Domain.Interfaces;
 using SkyTower.Infrastructure.Geo;
 
 namespace SkyTower.Infrastructure;

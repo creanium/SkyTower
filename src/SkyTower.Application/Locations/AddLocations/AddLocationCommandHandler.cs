@@ -1,6 +1,6 @@
 using SkyTower.Application.Messaging;
-using SkyTower.Core.Entities.LocationAggregate;
-using SkyTower.Core.Interfaces;
+using SkyTower.Domain.Entities.LocationAggregate;
+using SkyTower.Domain.Interfaces;
 
 namespace SkyTower.Application.Locations.AddLocations;
 

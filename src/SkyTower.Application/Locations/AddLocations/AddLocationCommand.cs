@@ -1,5 +1,5 @@
 using SkyTower.Application.Messaging;
-using SkyTower.Core.Entities.LocationAggregate;
+using SkyTower.Domain.Entities.LocationAggregate;
 
 namespace SkyTower.Application.Locations.AddLocations;
 

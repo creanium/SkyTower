@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SkyTower.Core.Entities.LocationAggregate;
+using SkyTower.Domain.Entities.LocationAggregate;
 using SkyTower.Infrastructure.Data.Config.Abstractions;
 
 namespace SkyTower.Infrastructure.Data.Config;

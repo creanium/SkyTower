@@ -1,6 +1,6 @@
 using System.Net.Mail;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SkyTower.Core.Extensions;
+using SkyTower.Domain.Extensions;
 
 namespace SkyTower.Infrastructure.Data.ValueConverters;
 
