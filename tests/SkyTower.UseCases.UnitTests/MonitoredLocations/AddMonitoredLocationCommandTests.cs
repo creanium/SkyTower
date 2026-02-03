@@ -1,4 +1,6 @@
-namespace SkyTower.UnitTests.UseCases.MonitoredLocations;
+using FluentAssertions;
+
+namespace SkyTower.UseCases.UnitTests.MonitoredLocations;
 
 [TestFixture]
 internal sealed class AddMonitoredLocationCommandTests
@@ -6,6 +8,6 @@ internal sealed class AddMonitoredLocationCommandTests
 	[Test]
 	public void AddMonitoredLocationCommand_CanBeCreated()
 	{
-		Assert.That(true, Is.True);
+		true.Should().BeTrue();
 	}
 }
