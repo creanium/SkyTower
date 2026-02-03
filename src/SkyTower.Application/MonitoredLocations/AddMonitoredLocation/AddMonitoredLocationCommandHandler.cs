@@ -1,6 +1,7 @@
-﻿using SkyTower.Core.Entities.MonitoredLocationAggregate;
+﻿using SkyTower.Application.Messaging;
+using SkyTower.Core.Entities.MonitoredLocationAggregate;
 
-namespace SkyTower.UseCases.MonitoredLocations.AddMonitoredLocation;
+namespace SkyTower.Application.MonitoredLocations.AddMonitoredLocation;
 
 public class AddMonitoredLocationCommandHandler(IRepository<MonitoredLocation> repository) : ICommandHandler<AddMonitoredLocationCommand, Id<MonitoredLocation>>
 {

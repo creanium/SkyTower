@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\SkyTower.UseCases\SkyTower.UseCases.csproj" />
+      <ProjectReference Include="..\..\src\SkyTower.Application\SkyTower.Application.csproj" />
     </ItemGroup>
 
 </Project>

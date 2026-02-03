@@ -4,10 +4,10 @@ using Ardalis.Result;
 using NSubstitute;
 using SkyTower.Core.Entities.LocationAggregate;
 using SkyTower.Core.Interfaces;
-using SkyTower.UseCases.Locations.AddLocations;
+using SkyTower.Application.Locations.AddLocations;
 using StrictId;
 
-namespace SkyTower.UseCases.UnitTests.Locations;
+namespace SkyTower.Application.UnitTests.Locations;
 
 [TestFixture]
 internal sealed class AddLocationCommandTests

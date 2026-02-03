@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace SkyTower.UseCases.Messaging;
+namespace SkyTower.Application.Messaging;
 
 public interface ICommandHandler<in TCommand> : IRequestHandler<TCommand, Result>
     where TCommand : ICommand

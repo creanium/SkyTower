@@ -7,6 +7,6 @@
     <ItemGroup>
         <ProjectReference Include="..\SkyTower.Core\SkyTower.Core.csproj"/>
         <ProjectReference Include="..\SkyTower.Infrastructure\SkyTower.Infrastructure.csproj"/>
-        <ProjectReference Include="..\SkyTower.UseCases\SkyTower.UseCases.csproj"/>
+        <ProjectReference Include="..\SkyTower.Application\SkyTower.Application.csproj" />
     </ItemGroup>
 </Project>

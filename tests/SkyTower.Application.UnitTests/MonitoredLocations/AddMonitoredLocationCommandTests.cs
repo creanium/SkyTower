@@ -1,6 +1,6 @@
 using FluentAssertions;
 
-namespace SkyTower.UseCases.UnitTests.MonitoredLocations;
+namespace SkyTower.Application.UnitTests.MonitoredLocations;
 
 [TestFixture]
 internal sealed class AddMonitoredLocationCommandTests

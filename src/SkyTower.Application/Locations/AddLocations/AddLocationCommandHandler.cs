@@ -1,7 +1,8 @@
+using SkyTower.Application.Messaging;
 using SkyTower.Core.Entities.LocationAggregate;
 using SkyTower.Core.Interfaces;
 
-namespace SkyTower.UseCases.Locations.AddLocations;
+namespace SkyTower.Application.Locations.AddLocations;
 
 public class AddLocationCommandHandler(IRepository<Location> repository, IGeospatialDataProvider geospatialDataProvider) : ICommandHandler<AddLocationCommand, Id<Location>>
 {

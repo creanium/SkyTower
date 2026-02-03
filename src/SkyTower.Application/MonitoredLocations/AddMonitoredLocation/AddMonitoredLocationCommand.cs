@@ -1,8 +1,9 @@
-﻿using SkyTower.Core.Entities.LocationAggregate;
+﻿using SkyTower.Application.Messaging;
+using SkyTower.Core.Entities.LocationAggregate;
 using SkyTower.Core.Entities.MonitoredLocationAggregate;
 using SkyTower.Core.Entities.UserAggregate;
 
-namespace SkyTower.UseCases.MonitoredLocations.AddMonitoredLocation;
+namespace SkyTower.Application.MonitoredLocations.AddMonitoredLocation;
 
 public sealed record AddMonitoredLocationCommand(
 	Id<Location> LocationId,

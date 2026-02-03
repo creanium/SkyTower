@@ -1,7 +1,8 @@
+using SkyTower.Application.Messaging;
 using SkyTower.Core.Entities.MonitoredLocationAggregate;
 using SkyTower.Core.Entities.MonitoredLocationAggregate.Specifications;
 
-namespace SkyTower.UseCases.MonitoredLocations.RemoveDigestSubscription;
+namespace SkyTower.Application.MonitoredLocations.RemoveDigestSubscription;
 
 public class RemoveDigestSubscriptionCommandHandler(IRepository<MonitoredLocation> monitoredLocationRepository) : ICommandHandler<RemoveDigestSubscriptionCommand>
 {

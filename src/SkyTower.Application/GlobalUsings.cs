@@ -2,5 +2,5 @@
 global using Ardalis.Result;
 global using Ardalis.SharedKernel;
 global using SkyTower.Core.Exceptions;
-global using SkyTower.UseCases.Messaging;
+global using SkyTower.Application.Messaging;
 global using StrictId;
