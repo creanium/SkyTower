@@ -1,4 +1,3 @@
-using SkyTower.Application.Messaging;
 using SkyTower.Domain.Entities.MonitoredLocationAggregate;
 
 namespace SkyTower.Application.MonitoredLocations.RemoveDigestSubscription;

@@ -1,4 +1,3 @@
-using SkyTower.Application.Messaging;
 using SkyTower.Domain.Entities.LocationAggregate;
 using SkyTower.Domain.Interfaces;
 
