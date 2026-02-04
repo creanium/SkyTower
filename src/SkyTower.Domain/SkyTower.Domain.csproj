@@ -10,8 +10,4 @@
         <PackageReference Include="NetTopologySuite"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="MesoscaleDiscussions\" />
-    </ItemGroup>
-
 </Project>

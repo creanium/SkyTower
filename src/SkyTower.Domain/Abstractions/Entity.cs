@@ -3,12 +3,15 @@ using SkyTower.Domain.Users;
 
 namespace SkyTower.Domain.Abstractions;
 
-public abstract class Entity<TImplementation> : IEntity<TImplementation>, IAuditableEntity, IEqualityComparer<TImplementation> 
+public abstract class Entity<TImplementation>(Id<TImplementation> id) : IEntity<TImplementation>, IAuditableEntity, IEqualityComparer<TImplementation>
 	where TImplementation : Entity<TImplementation>
 {
-	public Id<TImplementation> Id { get; [UsedImplicitly] private set; }
+	public Id<TImplementation> Id { get; [UsedImplicitly] init; } = id;
 	public AuditRegister Created { get; private set; } = new(null!, default);
 	public AuditRegister LastModified { get; private set; } = new(null!, default);
+
+	protected Entity() : this(Id<TImplementation>.NewId())
+	{ }
 
 	public void SetCreated(IApplicationUser? by)
 	{
