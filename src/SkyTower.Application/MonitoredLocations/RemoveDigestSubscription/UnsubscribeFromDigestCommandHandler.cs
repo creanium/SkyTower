@@ -3,9 +3,9 @@ using SkyTower.Domain.MonitoredLocations.Specifications;
 
 namespace SkyTower.Application.MonitoredLocations.RemoveDigestSubscription;
 
-public class RemoveDigestSubscriptionCommandHandler(IRepository<MonitoredLocation> monitoredLocationRepository) : ICommandHandler<RemoveDigestSubscriptionCommand>
+public class UnsubscribeFromDigestCommandHandler(IRepository<MonitoredLocation> monitoredLocationRepository) : ICommandHandler<UnsubscribeFromDigestCommand>
 {
-	public async Task<Result> Handle(RemoveDigestSubscriptionCommand request, CancellationToken cancellationToken)
+	public async Task<Result> Handle(UnsubscribeFromDigestCommand request, CancellationToken cancellationToken)
 	{
 		Guard.Against.Null(request);
 		var monitoredLocation = await monitoredLocationRepository.SingleOrDefaultAsync(new MonitoredLocationWithDigestsSpec(request.LocationId), cancellationToken)
@@ -18,7 +18,7 @@ public class RemoveDigestSubscriptionCommandHandler(IRepository<MonitoredLocatio
 		
 		try 
 		{
-			monitoredLocation.RemoveDigestSubscription(request.SubscriptionId);
+			monitoredLocation.UnsubscribeFromDigest(request.SubscriptionId);
 			return Result.Success();
 		}
 		catch (EntityNotFoundException<DigestSubscription> ex)

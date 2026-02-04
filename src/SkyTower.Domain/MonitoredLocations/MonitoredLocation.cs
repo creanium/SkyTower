@@ -20,15 +20,15 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 	/// Indicates whether this monitored location is enabled.
 	/// </summary>
 	public bool IsEnabled { get; private set; } = true;
-	
+
 	/// <summary>
 	/// Calculated property to indicate if monitoring is active, based on the <see cref="IsEnabled" />,
 	/// <see cref="NotBeforeDate" /> and <see cref="NotAfterDate" /> properties.
 	/// </summary>
-	public bool IsActive => IsEnabled 
-	                        && DateTimeOffset.UtcNow < (NotAfterDate ?? DateTimeOffset.MaxValue) 
+	public bool IsActive => IsEnabled
+	                        && DateTimeOffset.UtcNow < (NotAfterDate ?? DateTimeOffset.MaxValue)
 	                        && DateTimeOffset.UtcNow > (NotBeforeDate ?? DateTimeOffset.MinValue);
-	
+
 	/// <summary>
 	/// Do not begin monitoring until this date. Calculated from the start of the day in the <see cref="Location" />'s time zone.
 	/// </summary>
@@ -43,7 +43,7 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 	/// Indicates whether this location should be monitored for Convective Outlooks.
 	/// </summary>
 	public bool ShouldMonitorConvectiveOutlooks { get; private set; }
-	
+
 	/// <summary>
 	/// Indicates whether this location should be monitored for Convective Outlooks.
 	/// </summary>
@@ -59,7 +59,7 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 		LocationId = location.Id;
 		UserId = user.Id;
 	}
-	
+
 	/// <summary>
 	/// Enables overall monitoring for this location.
 	/// </summary>
@@ -81,7 +81,7 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 		ShouldMonitorConvectiveOutlooks = isEnabled;
 		return this;
 	}
-	
+
 	/// <summary>
 	/// Sets whether Mesoscale Discussion monitoring and alerting is enabled for this location.
 	/// </summary>
@@ -100,7 +100,7 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 
 		return SetMonitoringDates(notBefore, notAfter);
 	}
-	
+
 	/// <summary>
 	/// Sets the date range for monitoring. The start and end dates are both inclusive.
 	/// </summary>
@@ -119,7 +119,7 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 			var offset = Location.TimeZone.GetUtcOffset(localStartDate);
 			NotBeforeDate = new DateTimeOffset(localStartDate, offset);
 		}
-		
+
 		NotAfterDate = null;
 		if (notAfter.HasValue)
 		{
@@ -130,28 +130,33 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 
 		return this;
 	}
-	
-	public MonitoredLocation AddDigestSubscription(DaysOfWeek daysToSend, TimeOnly sendTime)
+
+	public MonitoredLocation SubscribeToDigest(DaysOfWeek daysToSend, TimeOnly sendTime)
 	{
-		// Ensure no existing subscription matches the same days and time
-		foreach (var existingSubscription in _digestSubscriptions)
+		Guard.Against.Expression(d => d == DaysOfWeek.None, daysToSend, "At least one day must be selected to send the digest.");
+		
+		if (NotAfterDate.HasValue && NotAfterDate < DateTimeOffset.UtcNow)
 		{
-			foreach (var dayOfWeek in Enum.GetValues<DaysOfWeek>())
-			{
-				if (daysToSend.HasFlag(dayOfWeek) && existingSubscription.DaysToSend.HasFlag(dayOfWeek)
-				    && existingSubscription.SendTime == sendTime)
-				{
-					throw new ArgumentException($"A digest subscription already exists for {dayOfWeek} at {sendTime}.");
-				}
-			}
+			throw new InvalidOperationException("Cannot add a digest subscription to a monitored location that has ended monitoring.");
+		}
+		
+		var overlappingDigests = _digestSubscriptions
+			.Where(s => s.SendTime < sendTime.AddHours(1) && s.SendTime > sendTime.AddHours(-1))
+			.Where(s => (s.DaysToSend & daysToSend) > 0)
+			.ToList();
+
+		// Ensure no existing subscription matches the same days and time
+		if (overlappingDigests.Count > 0)
+		{
+			throw new InvalidOperationException("The requested days and time overlap with an existing subscription. A digest cannot be sent within one hour of another digest on the same day.");
 		}
 
 		var subscription = new DigestSubscription(this, daysToSend, sendTime);
 		_digestSubscriptions.Add(subscription);
-		
+
 		return this;
 	}
-	
+
 	/// <summary>
 	/// 
 	/// </summary>
@@ -159,16 +164,16 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 	/// <returns></returns>
 	/// <exception cref="ArgumentException">Thrown if <paramref name="subscriptionId"/> is the default value</exception>
 	/// <exception cref="EntityNotFoundException{TEntity}">Thrown if a subscription matching <paramref name="subscriptionId"/> does not exist for this monitored location</exception>
-	public MonitoredLocation RemoveDigestSubscription(Id<DigestSubscription> subscriptionId)
+	public MonitoredLocation UnsubscribeFromDigest(Id<DigestSubscription> subscriptionId)
 	{
 		Guard.Against.Default(subscriptionId, message: "A valid subscription ID was not provided.");
 		var subscription = _digestSubscriptions.Find(s => s.Id == subscriptionId);
-		
-		Guard.Against.Default(subscription, message: $"No digest subscription found with ID {subscriptionId}.", 
+
+		Guard.Against.Default(subscription, message: $"No digest subscription found with ID {subscriptionId}.",
 			exceptionCreator: () => new EntityNotFoundException<DigestSubscription>(subscriptionId));
-		
+
 		_digestSubscriptions.Remove(subscription);
-		
+
 		return this;
 	}
 }

@@ -5,6 +5,7 @@ namespace SkyTower.Domain.MonitoredLocations;
 [Flags]
 public enum DaysOfWeek
 {
+	None = 0,
 	Sunday = 1,
 	Monday = 2,
 	Tuesday = 4,

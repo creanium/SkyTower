@@ -2,6 +2,7 @@ using System.Reflection;
 using Ardalis.SharedKernel;
 using Ardalis.Result;
 using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 using SkyTower.Application.Locations.AddLocations;
 using SkyTower.Domain.Locations;
 using StrictId;
@@ -55,5 +56,34 @@ internal sealed class AddLocationCommandTests
 		var location = Locations.FirstOrDefault(l => l.Id == response.Value);
 		Assert.That(location, Is.Not.Null);
 		Assert.That(location.TimeZone.Id, Is.EqualTo(expectedTimeZoneId));
+	}
+	
+	[Test]
+	public async Task AddLocation_InvalidCoordinates_ReturnsError()
+	{
+		var command = new AddLocationCommand("Invalid Location", 91.1, -185.3);
+		
+		var response = await new AddLocationCommandHandler(_locationRepository, _timeZoneDataProvider)
+			.Handle(command, CancellationToken.None)
+			.ConfigureAwait(false);
+		
+		Assert.That(response.IsError, Is.True);
+		Assert.That(response.Errors.FirstOrDefault(), Is.EqualTo("Provided coordinates are invalid."));
+	}
+	
+	[Test]
+	public async Task AddLocation_TimeZoneLookupFails_ReturnsError()
+	{
+		_timeZoneDataProvider.GetTimeZoneInfo(Arg.Any<double>(), Arg.Any<double>())
+			.Returns(Result.Error("Time zone lookup failed."));
+		
+		var command = new AddLocationCommand("Nowhere", 0, 0);
+		
+		var response = await new AddLocationCommandHandler(_locationRepository, _timeZoneDataProvider)
+			.Handle(command, CancellationToken.None)
+			.ConfigureAwait(false);
+		
+		Assert.That(response.IsError, Is.True);
+		Assert.That(response.Errors.FirstOrDefault(), Is.EqualTo("Failed to determine time zone for the provided coordinates: Time zone lookup failed."));
 	}
 }
