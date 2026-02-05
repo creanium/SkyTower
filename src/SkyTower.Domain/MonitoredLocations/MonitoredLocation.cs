@@ -93,37 +93,31 @@ public sealed class MonitoredLocation(Id<Location> locationId, Id<User> userId) 
 		return this;
 	}
 
-	private MonitoredLocation RecalculateMonitoringDates()
-	{
-		var notBefore = NotBeforeDate.HasValue ? DateOnly.FromDateTime(NotBeforeDate.Value.Date) : (DateOnly?)null;
-		var notAfter = NotAfterDate.HasValue ? DateOnly.FromDateTime(NotAfterDate.Value.Date) : (DateOnly?)null;
-
-		return SetMonitoringDates(notBefore, notAfter);
-	}
-
 	/// <summary>
 	/// Sets the date range for monitoring. The start and end dates are both inclusive.
 	/// </summary>
-	/// <param name="notBefore">The date to begin monitoring for this location. If <c>null</c>, then monitoring will begin immediately.</param>
-	/// <param name="notAfter">The date to end monitoring for this location. If <c>null</c>, then monitoring will continue indefinitely.</param>
+	/// <param name="period">
+	/// The dates to monitor to begin monitoring for this location. If <see cref="MonitoringPeriod.NotBefore"/> is <c>null</c>, then monitoring will begin immediately.
+	/// If <see cref="MonitoringPeriod.NotAfter"/> is <c>null</c>, then monitoring will continue indefinitely.</param>
 	/// <returns>This instance</returns>
-	public MonitoredLocation SetMonitoringDates(DateOnly? notBefore, DateOnly? notAfter)
+	public MonitoredLocation SetMonitoringDates(MonitoringPeriod period)
 	{
+		Guard.Against.Null(period, message: "Period is null.");
 		Guard.Against.Null(Location, message: "Location is null and must be available to set monitoring dates.");
 		Guard.Against.Null(Location.TimeZone, message: "Time Zone is not set for the location, and must be available in order to set monitoring dates.");
 
 		NotBeforeDate = null;
-		if (notBefore.HasValue)
+		if (period.NotBefore.HasValue)
 		{
-			var localStartDate = new DateTime(notBefore.Value, TimeOnly.MinValue, DateTimeKind.Unspecified);
+			var localStartDate = new DateTime(period.NotBefore.Value, TimeOnly.MinValue, DateTimeKind.Unspecified);
 			var offset = Location.TimeZone.GetUtcOffset(localStartDate);
 			NotBeforeDate = new DateTimeOffset(localStartDate, offset);
 		}
 
 		NotAfterDate = null;
-		if (notAfter.HasValue)
+		if (period.NotAfter.HasValue)
 		{
-			var localEndDate = new DateTime(notAfter.Value, TimeOnly.MaxValue, DateTimeKind.Unspecified);
+			var localEndDate = new DateTime(period.NotAfter.Value, TimeOnly.MaxValue, DateTimeKind.Unspecified);
 			var offset = Location.TimeZone.GetUtcOffset(localEndDate);
 			NotAfterDate = new DateTimeOffset(localEndDate, offset);
 		}

@@ -7,10 +7,10 @@ public class AddMonitoredLocationCommandHandler(IRepository<MonitoredLocation> r
 	public async Task<Result<Id<MonitoredLocation>>> Handle(AddMonitoredLocationCommand request, CancellationToken cancellationToken)
 	{
 		Guard.Against.Null(request);
-		var monitoredLocation = new MonitoredLocation(request.LocationId, request.UserId);
-		monitoredLocation.SetConvectiveOutlookMonitoringEnabled(request.ShouldMonitorConvectiveOutlooks);
-		monitoredLocation.SetMesoscaleDiscussionMonitoringEnabled(request.ShouldMonitorMesoscaleDiscussions);
-		monitoredLocation.SetMonitoringDates(request.MonitoringStartDate, request.MonitoringEndDate);
+		var monitoredLocation = new MonitoredLocation(request.LocationId, request.UserId)
+			.SetConvectiveOutlookMonitoringEnabled(request.ShouldMonitorConvectiveOutlooks)
+			.SetMesoscaleDiscussionMonitoringEnabled(request.ShouldMonitorMesoscaleDiscussions)
+			.SetMonitoringDates(new MonitoringPeriod(request.MonitoringStartDate, request.MonitoringEndDate));
 
 		var entity = await repository.AddAsync(monitoredLocation, cancellationToken).ConfigureAwait(false);
 		return Result.Created(entity.Id);

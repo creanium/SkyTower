@@ -20,7 +20,7 @@ internal sealed class MonitoredLocationTests
 		var monitoredLocation = new MonitoredLocation(location, new User());
 		Assert.That(monitoredLocation.Location, Is.EqualTo(location));
 
-		monitoredLocation.SetMonitoringDates(DateOnly.FromDateTime(notBefore), DateOnly.FromDateTime(notAfter));
+		monitoredLocation.SetMonitoringDates(new MonitoringPeriod(DateOnly.FromDateTime(notBefore), DateOnly.FromDateTime(notAfter)));
 
 		using (Assert.EnterMultipleScope())
 		{
@@ -43,7 +43,7 @@ internal sealed class MonitoredLocationTests
 		var monitoredLocation = new MonitoredLocation(firstLocation, new User());
 		Assert.That(monitoredLocation.Location, Is.EqualTo(firstLocation));
 
-		monitoredLocation.SetMonitoringDates(DateOnly.FromDateTime(notBefore), DateOnly.FromDateTime(notAfter));
+		monitoredLocation.SetMonitoringDates(new MonitoringPeriod(DateOnly.FromDateTime(notBefore), DateOnly.FromDateTime(notAfter)));
 
 		using (Assert.EnterMultipleScope())
 		{
@@ -90,7 +90,7 @@ internal sealed class MonitoredLocationTests
 		var location = Location.Create("Denver", new GeographicCoordinate(39.7392, -104.9903), timeZone!);
 		var monitoredLocation = new MonitoredLocation(location, new User());
 
-		monitoredLocation.SetMonitoringDates(null, DateOnly.FromDateTime(DateTime.Now.AddDays(-7)));
+		monitoredLocation.SetMonitoringDates(new MonitoringPeriod(null, DateOnly.FromDateTime(DateTime.Now.AddDays(-7))));
 		Assert.Throws<InvalidOperationException>(() => monitoredLocation.SubscribeToDigest(DaysOfWeek.Monday, new TimeOnly(7, 00)));
 	}
 	
@@ -127,5 +127,4 @@ internal sealed class MonitoredLocationTests
 		Assert.Throws<EntityNotFoundException<DigestSubscription>>(() => monitoredLocation.UnsubscribeFromDigest(Id<DigestSubscription>.NewId()));
 		Assert.That(monitoredLocation.DigestSubscriptions, Has.Count.EqualTo(2));
 	}
-
 }

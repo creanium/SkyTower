@@ -23,6 +23,11 @@ public class DigestSubscription(MonitoredLocation monitoredLocation, DaysOfWeek 
 	/// The time in the location's time zone to send the digest.
 	/// </summary>
  	public TimeOnly SendTime { get; private set; } = sendTime;
+	
+	/// <summary>
+	/// The next time the digest should be sent.
+	/// </summary>
+	public DateTimeOffset? NextSendDate { get; private set; }
 
 	/// <summary>
 	/// The last time the digest was sent.
@@ -30,7 +35,40 @@ public class DigestSubscription(MonitoredLocation monitoredLocation, DaysOfWeek 
 	public DateTimeOffset? LastSent { get; private set; }
 	
 	/// <summary>
-	/// The next time the digest should be sent.
+	/// Calculates the next send date based on the current time, the location's time zone, the days to send, and the send time.
 	/// </summary>
-	public DateTimeOffset? NextSendDate { get; private set; }
+	/// <returns>This instance</returns>
+	public DigestSubscription CalculateNextSendDate()
+	{
+		var locationTimeZone = MonitoredLocation.Location.TimeZone;
+		var localDateTime = TimeZoneInfo.ConvertTime(DateTimeOffset.UtcNow, locationTimeZone);
+		var nextSendDateTime = localDateTime.Date + SendTime.ToTimeSpan();
+
+		// If the send time has already passed today, move to the next day
+		if (nextSendDateTime <= localDateTime)
+		{
+			nextSendDateTime = nextSendDateTime.AddDays(1);
+		}
+
+		// Find the next valid day to send
+		// DayOfWeek will return an integer between 0 and 6 so we can use bit shifting to check the flag
+		while (!DaysToSend.HasFlag((DaysOfWeek)(1 << (int)nextSendDateTime.DayOfWeek)))
+		{
+			nextSendDateTime = nextSendDateTime.AddDays(1);
+		}
+
+		// Convert back to UTC
+		NextSendDate = TimeZoneInfo.ConvertTimeToUtc(nextSendDateTime, locationTimeZone);
+		return this;
+	}
+	
+	/// <summary>
+	/// Updates the last sent date to now and recalculates the next send date.
+	/// </summary>
+	/// <returns>This instance</returns>
+	public DigestSubscription MarkAsSent()
+	{
+		LastSent = DateTimeOffset.UtcNow;
+		return CalculateNextSendDate();
+	}
 }
