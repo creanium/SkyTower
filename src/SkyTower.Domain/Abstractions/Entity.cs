@@ -10,6 +10,15 @@ public abstract class Entity<TImplementation>(Id<TImplementation> id) : IEntity<
 	public AuditRegister Created { get; private set; } = new(null!, default);
 	public AuditRegister LastModified { get; private set; } = new(null!, default);
 
+	private readonly List<IDomainEvent> _domainEvents = [];
+	
+	public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+
+#pragma warning disable CA1030
+	protected void RaiseDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
+#pragma warning restore CA1030
+	internal void ClearDomainEvents() => _domainEvents.Clear();
+	
 	protected Entity() : this(Id<TImplementation>.NewId())
 	{ }
 

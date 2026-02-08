@@ -1,6 +1,8 @@
+using SkyTower.Domain.Abstractions;
+
 namespace SkyTower.Domain.MonitoredLocations;
 
-public record MonitoringPeriod
+public class MonitoringPeriod : ValueObject
 {
 	public DateOnly? NotBefore { get; init; }
 	public DateOnly? NotAfter { get; init; }

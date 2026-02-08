@@ -1,5 +1,6 @@
 ﻿using NetTopologySuite.Geometries;
 using SkyTower.Domain.Abstractions;
+using SkyTower.Domain.MesoscaleDiscussions.Events;
 
 namespace SkyTower.Domain.MesoscaleDiscussions;
 
@@ -53,7 +54,7 @@ public sealed class MesoscaleDiscussion : Entity<MesoscaleDiscussion>
 			RawContent = rawContent
 		};
 		
-		// TODO: Raise domain event
+		discussion.RaiseDomainEvent(new MesoscaleDiscussionIssuedDomainEvent(discussion.Id));
 		
 		return discussion;
 	}

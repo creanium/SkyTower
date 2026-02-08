@@ -6,7 +6,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Ardalis.SharedKernel" />
+        <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" />
         <PackageReference Include="EFCore.NamingConventions" />
         <PackageReference Include="GeoTimeZone" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />

@@ -1,5 +1,3 @@
-using FluentAssertions;
-
 namespace SkyTower.Application.UnitTests.MonitoredLocations;
 
 [TestFixture]

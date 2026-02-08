@@ -1,5 +1,4 @@
 using Ardalis.GuardClauses;
-using Ardalis.SharedKernel;
 using JetBrains.Annotations;
 using SkyTower.Domain.Abstractions;
 using SkyTower.Domain.Exceptions;

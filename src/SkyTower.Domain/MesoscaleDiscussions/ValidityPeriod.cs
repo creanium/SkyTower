@@ -1,6 +1,8 @@
+using SkyTower.Domain.Abstractions;
+
 namespace SkyTower.Domain.MesoscaleDiscussions;
 
-public record ValidityPeriod
+public class ValidityPeriod : ValueObject
 {
 	public DateTimeOffset ValidFrom { get; init; }
 	public DateTimeOffset ValidTo { get; init; }

@@ -1,9 +1,10 @@
 ﻿using Ardalis.GuardClauses;
 using NetTopologySuite.Geometries;
+using SkyTower.Domain.Abstractions;
 
 namespace SkyTower.Domain.Locations;
 
-public sealed record GeographicCoordinate
+public sealed class GeographicCoordinate : ValueObject
 {
 	public double Latitude { get; init; }
 	public double Longitude { get; init; }

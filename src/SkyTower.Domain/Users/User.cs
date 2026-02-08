@@ -1,5 +1,4 @@
 using System.Net.Mail;
-using Ardalis.SharedKernel;
 using SkyTower.Domain.Abstractions;
 
 namespace SkyTower.Domain.Users;

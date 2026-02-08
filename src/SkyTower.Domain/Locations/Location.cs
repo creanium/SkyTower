@@ -1,6 +1,4 @@
 using Ardalis.GuardClauses;
-using Ardalis.SharedKernel;
-using NetTopologySuite.Geometries;
 using SkyTower.Domain.Abstractions;
 using SkyTower.Domain.ConvectiveOutlooks;
 
