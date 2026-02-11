@@ -25,7 +25,7 @@ public class TimeZoneDataProvider(ILogger<TimeZoneDataProvider> logger) : ITimeZ
 		}
 		catch (TimeZoneNotFoundException nfEx)
 		{
-#pragma warning disable CA1848 LoggerMessage delegates don't work well with exceptions 
+#pragma warning disable CA1848 LoggerMessage delegates don't work well with exceptions yet. Maybe I'll implement a better pattern 
 			logger.LogError(nfEx, "'{TimeZoneId}' could not be found", lookupResult.Result);
 			return Result.NotFound();
 		}
