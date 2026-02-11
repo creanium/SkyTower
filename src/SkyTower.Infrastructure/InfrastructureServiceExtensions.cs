@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SkyTower.Domain.Locations;
-using SkyTower.Infrastructure.Geo;
+using SkyTower.Infrastructure.Geospatial;
 
 namespace SkyTower.Infrastructure;
 

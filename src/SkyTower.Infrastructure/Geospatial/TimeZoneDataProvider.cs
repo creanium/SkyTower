@@ -5,7 +5,7 @@ using SkyTower.Domain.Extensions;
 using SkyTower.Domain.Locations;
 using TimeZoneConverter;
 
-namespace SkyTower.Infrastructure.Geo;
+namespace SkyTower.Infrastructure.Geospatial;
 
 public class TimeZoneDataProvider(ILogger<TimeZoneDataProvider> logger) : ITimeZoneDataProvider
 {
@@ -25,7 +25,7 @@ public class TimeZoneDataProvider(ILogger<TimeZoneDataProvider> logger) : ITimeZ
 		}
 		catch (TimeZoneNotFoundException nfEx)
 		{
-#pragma warning disable CA1848
+#pragma warning disable CA1848 LoggerMessage delegates don't work well with exceptions 
 			logger.LogError(nfEx, "'{TimeZoneId}' could not be found", lookupResult.Result);
 			return Result.NotFound();
 		}
