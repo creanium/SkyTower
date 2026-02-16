@@ -23,4 +23,9 @@ public class ValidityPeriod : ValueObject
 		validFrom = ValidFrom;
 		validTo = ValidTo;
 	}
+
+	public override string ToString()
+	{
+		return $"{ValidFrom:u} to {ValidTo:u}";
+	}
 }

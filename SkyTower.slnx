@@ -9,6 +9,7 @@
   </Folder>
   <Folder Name="/Tests/">
     <File Path="tests/Directory.Packages.props" />
+    <Project Path="tests/SkyTower.Infrastructure.Tests/SkyTower.Infrastructure.Tests.csproj" />
     <Project Path="tests\SkyTower.Application.UnitTests\SkyTower.Application.UnitTests.csproj" />
     <Project Path="tests\SkyTower.Domain.UnitTests\SkyTower.Domain.UnitTests.csproj" />
   </Folder>
