@@ -54,7 +54,7 @@ public sealed class MesoscaleDiscussion : Entity<MesoscaleDiscussion>
 			RawContent = rawContent
 		};
 		
-		discussion.RaiseDomainEvent(new MesoscaleDiscussionIssuedDomainEvent(discussion.Id));
+		discussion.RaiseDomainEvent(new MesoscaleDiscussionIssuedDomainEvent(discussion.Id, discussion.Boundary, discussion.ValidityPeriod));
 		
 		return discussion;
 	}
