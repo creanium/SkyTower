@@ -1,0 +1,45 @@
+
+   Mesoscale Discussion 0089
+   NWS Storm Prediction Center Norman OK
+   0729 AM CST Mon Feb 16 2026
+
+   Areas affected...Portions of the southern California Coast
+
+   Concerning...Severe potential...Watch unlikely 
+
+   Valid 161329Z - 161530Z
+
+   Probability of Watch Issuance...5 percent
+
+   SUMMARY...Weak convective showers may pose a threat for waterspouts
+   and damaging winds along portions of the southern California coast
+   through mid-morning.
+
+   DISCUSSION...Latest radar imagery from KVBX shows shallow convective
+   cells moving northward ahead of an eastward migrating convective
+   band within a narrow plume of warm air advection. Several of these
+   cells show weak rotation per velocity imagery, and while too shallow
+   for substantial lightning production, may be capable of brief/weak
+   waterspouts given nearly 450 m2/s2 0-1 km SRH sampled by the nearby
+   KVBX VWP. These cells will gradually approach the coastline of
+   western Santa Barbara and San Luis Obispo counties in the next few
+   hours and may pose a risk of waterspouts and damaging winds along
+   the shore. This threat is expected to remain fairly spatially
+   limited to coastal areas given very limited buoyancy further inland,
+   at least for the next few hours before cold temperatures aloft
+   spread east. Regardless, the spatial/temporal threat will likely
+   remain sufficiently limited to preclude watch issuance.
+
+   ..Moore/Smith.. 02/16/2026
+
+   ...Please see www.spc.noaa.gov for graphic product...
+
+   ATTN...WFO...LOX...
+
+   LAT...LON   34412047 34542066 34642067 34862064 35062066 35182085
+               35292097 35442104 35622103 35692089 35622074 35212042
+               34862025 34662010 34472005 34422016 34412047 
+
+   MOST PROBABLE PEAK TORNADO INTENSITY...UP TO 95 MPH
+   MOST PROBABLE PEAK WIND GUST...UP TO 60 MPH
+

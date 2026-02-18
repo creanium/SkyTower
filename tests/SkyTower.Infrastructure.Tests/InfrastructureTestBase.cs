@@ -23,4 +23,14 @@ internal abstract class InfrastructureTestBase
 	{
 		ServiceProvider.Dispose();
 	}
+	
+	protected static string GetTestFileContent<TTestClass>(string relativePath)
+	{
+		var basePath = TestContext.CurrentContext.TestDirectory;
+		var namespaceParts = typeof(TTestClass).Namespace!.Split('.');
+		var namespacePath = namespaceParts[^1];
+		var fullPath = Path.Combine(basePath, namespacePath, "TestFiles", relativePath);
+		
+		return File.ReadAllText(fullPath);
+	}
 }

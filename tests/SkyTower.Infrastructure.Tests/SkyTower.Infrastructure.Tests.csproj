@@ -25,4 +25,16 @@
       <ProjectReference Include="..\..\src\SkyTower.Infrastructure\SkyTower.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="MesoscaleDiscussions\TestFiles\2026-MD0087.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="MesoscaleDiscussions\TestFiles\2026-MD0089.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="MesoscaleDiscussions\TestFiles\2026-MD0090.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

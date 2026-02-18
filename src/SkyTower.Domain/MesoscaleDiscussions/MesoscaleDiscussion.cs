@@ -14,7 +14,7 @@ public sealed class MesoscaleDiscussion : Entity<MesoscaleDiscussion>
 
 	public int Number { get; private set; }
 
-	public Polygon Boundary { get; private set; } = null!;
+	public LinearRing Boundary { get; private set; } = null!;
 
 	public ValidityPeriod ValidityPeriod { get; private set; } = null!;
 
@@ -35,7 +35,7 @@ public sealed class MesoscaleDiscussion : Entity<MesoscaleDiscussion>
 	public static MesoscaleDiscussion Create(
 		DateTimeOffset issued,
 		int number,
-		Polygon boundary,
+		LinearRing boundary,
 		ValidityPeriod validityPeriod,
 		Uri graphicProductUri,
 		Uri imageUri,

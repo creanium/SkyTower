@@ -13,13 +13,15 @@ public class MesoscaleDiscussionDetails
 	
 	public ValidityPeriod? ValidityPeriod { get; init; }
 	
-	public double? ProbabilityOfWatchIssuance { get; init; }
+	public double? WatchProbability { get; init; }
+	
+	public string? Headline { get; init; }
 	
 	public string? Summary { get; init; }
 	
-	public string? Discussion { get; init; }
+	public IReadOnlyList<string>? Discussion { get; init; }
 
-	public Polygon? Boundary { get; init; }
+	public LinearRing? Boundary { get; init; }
 	
 	public Dictionary<string, string> MostProbablePeakIntensities { get; } = [];
 }

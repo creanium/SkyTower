@@ -1,0 +1,56 @@
+
+   Mesoscale Discussion 0087
+   NWS Storm Prediction Center Norman OK
+   0311 PM CST Sun Feb 15 2026
+
+   Areas affected...Parts of southeast GA into north FL
+
+   Concerning...Tornado Watch 8...9...
+
+   Valid 152111Z - 152245Z
+
+   The severe weather threat for Tornado Watch 8, 9 continues.
+
+   SUMMARY...Locally damaging wind and/or a tornado remain possible
+   through the remainder of the afternoon.
+
+   DISCUSSION...The QLCS across southeast GA and north FL has become
+   disorganized this afternoon, likely due to outpacing the more robust
+   low-level moisture return. However, area VWPs continue to depict
+   strong low/midlevel flow and favorable wind profiles for organized
+   convection. 
+
+   Across southeast GA, buoyancy will tend to remain quite weak through
+   the remainder of the afternoon. However, given the favorable wind
+   profile, any uptick in convective intensity could be accompanied by
+   a threat for locally damaging wind and/or a brief tornado. 
+
+   Farther south, rather strong heating/mixing has occurred across
+   northeast FL. While some moistening is still expected to occur prior
+   to the arrival of deeper convection (aided by preceding stratiform
+   precipitation), strong flow and somewhat steepened low-level lapse
+   rates could favor some uptick in damaging-wind potential with time.
+   Also, given the breakdown of the earlier more linear structure, one
+   or more semi-discrete supercells (such as the one currently over
+   Suwannee/Columbia Counties) could persist and pose some
+   damaging-wind and tornado threat, especially where richer low-level
+   moisture can be maintained. 
+
+   Late this afternoon into the early evening, strong offshore storms
+   may begin to approach the FL Gulf Coast north of Tampa Bay, which
+   may eventually necessitate expansion of WW 9, depending on
+   convective trends as the storms approach.
+
+   ..Dean/Gleason.. 02/15/2026
+
+   ...Please see www.spc.noaa.gov for graphic product...
+
+   ATTN...WFO...CHS...MLB...TBW...JAX...TAE...
+
+   LAT...LON   29448352 30198293 31048206 31618160 31678117 30468129
+               29658141 28968156 28468219 28388268 28568346 29448352 
+
+   MOST PROBABLE PEAK TORNADO INTENSITY...85-115 MPH
+   MOST PROBABLE PEAK WIND GUST...55-70 MPH
+   MOST PROBABLE PEAK HAIL SIZE...UP TO 1.25 IN
+

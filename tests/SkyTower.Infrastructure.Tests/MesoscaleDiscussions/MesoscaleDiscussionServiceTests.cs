@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SkyTower.Application.MesoscaleDiscussions;
 using SkyTower.Domain.MesoscaleDiscussions;
 
-namespace SkyTower.Infrastructure.Tests;
+namespace SkyTower.Infrastructure.Tests.MesoscaleDiscussions;
 
 [TestFixture]
 internal sealed class MesoscaleDiscussionServiceTests : InfrastructureTestBase
