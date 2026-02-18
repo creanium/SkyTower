@@ -75,6 +75,21 @@ public partial class MesoscaleDiscussionParser
 
 		return null;
 	}
+	
+	public string? ParseHeadline()
+	{
+		throw new NotImplementedException();
+	}
+
+	public string? ParseSummary()
+	{
+		throw new NotImplementedException();
+	}
+
+	public IReadOnlyList<string>? ParseDiscussion()
+	{
+		throw new NotImplementedException();
+	}
 
 	public LinearRing ParseBoundary()
 	{
@@ -181,19 +196,4 @@ public partial class MesoscaleDiscussionParser
 	private static partial Regex ValidityLineRegex();
     [GeneratedRegex(@"(\d{2})(\d{2})(\d{2})(\d{2})")]
     private static partial Regex CoordinatePairRegex();
-
-    public string? ParseHeadline()
-    {
-	    throw new NotImplementedException();
-    }
-
-    public string? ParseSummary()
-    {
-	    throw new NotImplementedException();
-    }
-
-    public IReadOnlyList<string>? ParseDiscussion()
-    {
-	    throw new NotImplementedException();
-    }
 }
