@@ -1,0 +1,41 @@
+
+   Mesoscale Discussion 0006
+   NWS Storm Prediction Center Norman OK
+   0541 AM CST Thu Jan 08 2026
+
+   Areas affected...Northwest Texas to north-central Oklahoma
+
+   Concerning...Severe potential...Watch possible 
+
+   Valid 081141Z - 081345Z
+
+   Probability of Watch Issuance...40 percent
+
+   SUMMARY...A few strong to marginally severe storms are possible this
+   morning.
+
+   DISCUSSION...Thunderstorms coverage has increased across West Texas
+   and into Oklahoma this morning as isentropic ascent has strengthened
+   with 1km flow now approaching 50 knots on the TLX VWP. Within this
+   zone, MUCAPE around 1000 J/kg and effective shear of 55-60 knots
+   will support some storm organization and stronger cells capable of
+   isolated large hail. In addition, 61 to 63F dewpoints have spread
+   northward across much of Oklahoma which has eroded inhibition across
+   the state with around 500-750 J/kg MLCAPE. Overall, a messy storm
+   mode and weak low-level lapse rates should limit the overall threat.
+   Nonetheless, given the veered low-level wind profile, a brief
+   tornado and/or gusty winds cannot be ruled out if a more established
+   storm/mesocyclone can develop.
+
+   ..Bentley/Mosier.. 01/08/2026
+
+   ...Please see www.spc.noaa.gov for graphic product...
+
+   ATTN...WFO...TSA...FWD...OUN...SJT...
+
+   LAT...LON   34999604 33609779 33159892 33189943 34199955 34649945
+               35589863 36249770 36869707 36849630 35989581 34999604 
+
+   MOST PROBABLE PEAK WIND GUST...UP TO 60 MPH
+   MOST PROBABLE PEAK HAIL SIZE...UP TO 1.25 IN
+

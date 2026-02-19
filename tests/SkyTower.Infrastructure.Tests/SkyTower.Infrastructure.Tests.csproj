@@ -35,6 +35,19 @@
       <Content Include="MesoscaleDiscussions\TestFiles\2026-MD0090.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <Content Include="MesoscaleDiscussions\TestFiles\2026-MD0087-Discussion.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="MesoscaleDiscussions\TestFiles\2026-MD0089-Discussion.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="MesoscaleDiscussions\TestFiles\2026-MD0090-Discussion.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="MesoscaleDiscussions\TestFiles\2026-MD0006.txt" />
+      <Content Include="MesoscaleDiscussions\TestFiles\2026-MD0006.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

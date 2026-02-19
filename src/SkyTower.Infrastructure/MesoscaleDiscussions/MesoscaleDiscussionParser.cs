@@ -11,19 +11,19 @@ namespace SkyTower.Infrastructure.MesoscaleDiscussions;
 public partial class MesoscaleDiscussionParser
 {
 	private readonly IReadOnlyList<string> _paragraphs;
-	
+
 	public MesoscaleDiscussionParser(string rawText)
 	{
 		Guard.Against.NullOrWhiteSpace(rawText);
 		_paragraphs = ParseParagraphs(rawText);
-		
+
 		if (_paragraphs.Count < 3)
 		{
 			throw new FormatException("Discussion text must contain at least three paragraphs.");
 		}
 	}
-	
-	public static IReadOnlyList<string> ParseParagraphs(string toParse) => [.. ParagraphSplit().Split(toParse).Select(s => s.Trim())];
+
+	private static IReadOnlyList<string> ParseParagraphs(string toParse) => [.. ParagraphSplit().Split(toParse).Select(p => string.Join(" ", p.Split('\n').Select(line => line.Trim())))];
 
 	public DateTimeOffset ParseIssued()
 	{
@@ -75,20 +75,55 @@ public partial class MesoscaleDiscussionParser
 
 		return null;
 	}
-	
+
 	public string? ParseHeadline()
 	{
-		throw new NotImplementedException();
+		var index = _paragraphs.FindIndex(p => p.StartsWith("Valid ", StringComparison.OrdinalIgnoreCase));
+		var targetIndex = index + 1;
+
+		if (index < 0)
+		{
+			index = _paragraphs.FindIndex(p => p.StartsWith("SUMMARY...", StringComparison.OrdinalIgnoreCase));
+			targetIndex = index - 1;
+		}
+
+		if (
+			_paragraphs[targetIndex].StartsWith("SUMMARY...", StringComparison.OrdinalIgnoreCase)
+			|| _paragraphs[targetIndex].StartsWith("Valid ", StringComparison.OrdinalIgnoreCase)
+			|| _paragraphs[targetIndex].StartsWith("Probability of Watch Issuance...", StringComparison.OrdinalIgnoreCase)
+		)
+		{
+			return null;
+		}
+
+		return _paragraphs[targetIndex];
 	}
 
 	public string? ParseSummary()
 	{
-		throw new NotImplementedException();
+		const string linePrefix = "SUMMARY...";
+		var summaryLine = _paragraphs.FirstOrDefault(p => p.StartsWith(linePrefix, StringComparison.OrdinalIgnoreCase));
+
+		return summaryLine?[linePrefix.Length..]?.Trim();
 	}
 
 	public IReadOnlyList<string>? ParseDiscussion()
 	{
-		throw new NotImplementedException();
+		const string linePrefix = "DISCUSSION...";
+		var discussionIndex = _paragraphs.FindIndex(p => p.StartsWith(linePrefix, StringComparison.OrdinalIgnoreCase));
+		
+		if (discussionIndex < 0)
+		{
+			return null;
+		}
+
+		var discussionLines = _paragraphs.Skip(discussionIndex)
+		                                .TakeWhile(p => !p.StartsWith("..", StringComparison.OrdinalIgnoreCase))
+		                                .ToList();
+
+		discussionLines[0] = discussionLines[0][linePrefix.Length..].Trim();
+
+		return discussionLines.AsReadOnly();
 	}
 
 	public LinearRing ParseBoundary()
@@ -112,10 +147,10 @@ public partial class MesoscaleDiscussionParser
 			{
 				throw new FormatException($"Invalid coordinate pair '{coordinate}'. Expected format is 'ddmmddmm' (latitude and longitude in degrees and minutes).");
 			}
-			
+
 			var latString = $"{parts[1].Value}.{parts[2].Value}";
 			var lonString = $"{parts[3].Value}.{parts[4].Value}";
-			
+
 			if (!double.TryParse(latString, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out var latitude) ||
 			    !double.TryParse(lonString, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out var longitude))
 			{
@@ -129,7 +164,7 @@ public partial class MesoscaleDiscussionParser
 
 			longitude = Math.Round(-longitude, 2, MidpointRounding.AwayFromZero);
 			latitude = Math.Round(latitude, 2, MidpointRounding.AwayFromZero);
-			
+
 			coordinates.Add(new Coordinate(longitude, latitude));
 		}
 
@@ -194,6 +229,7 @@ public partial class MesoscaleDiscussionParser
 
 	[GeneratedRegex(@"Valid (\d{2})(\d{4})Z - (\d{2})(\d{4})Z")]
 	private static partial Regex ValidityLineRegex();
-    [GeneratedRegex(@"(\d{2})(\d{2})(\d{2})(\d{2})")]
-    private static partial Regex CoordinatePairRegex();
+
+	[GeneratedRegex(@"(\d{2})(\d{2})(\d{2})(\d{2})")]
+	private static partial Regex CoordinatePairRegex();
 }

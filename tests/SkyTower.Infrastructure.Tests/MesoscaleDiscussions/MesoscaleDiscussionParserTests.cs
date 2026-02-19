@@ -1,3 +1,4 @@
+using System.Text.Json;
 using NetTopologySuite.Geometries;
 using SkyTower.Infrastructure.MesoscaleDiscussions;
 
@@ -6,6 +7,51 @@ namespace SkyTower.Infrastructure.Tests.MesoscaleDiscussions;
 [TestFixture]
 internal sealed class MesoscaleDiscussionParserTests : InfrastructureTestBase
 {
+	[TestCase("2026-MD0087.txt", "The severe weather threat for Tornado Watch 8, 9 continues.")]
+	[TestCase("2026-MD0089.txt", null)]
+	[TestCase("2026-MD0090.txt", null)]
+	public void HeadlineIsParsed(string testFile, string? expectedHeadline)
+	{
+		var discussionText = GetTestFileContent<MesoscaleDiscussionParserTests>(testFile);
+		
+		var parser = new MesoscaleDiscussionParser(discussionText);
+		var headline = parser.ParseHeadline();
+
+		Assert.That(headline, Is.EqualTo(expectedHeadline));
+	}
+	
+	[TestCase("2026-MD0087.txt", "2026-MD0087-Discussion.json")]
+	[TestCase("2026-MD0089.txt", "2026-MD0089-Discussion.json")]
+	[TestCase("2026-MD0090.txt", "2026-MD0090-Discussion.json")]
+	public void DiscussionIsParsed(string testFile, string expectedResultFile)
+	{
+		var discussionText = GetTestFileContent<MesoscaleDiscussionParserTests>(testFile);
+		var expectedDiscussionJson = GetTestFileContent<MesoscaleDiscussionParserTests>(expectedResultFile);
+		var expectedDiscussion = JsonSerializer.Deserialize<List<string>>(expectedDiscussionJson)!.AsReadOnly();
+		
+		var parser = new MesoscaleDiscussionParser(discussionText);
+		var discussion = parser.ParseDiscussion();
+
+		Assert.That(discussion, Is.Not.Null);
+		Assert.That(expectedDiscussion, Is.Not.Null);
+		Assert.That(discussion, Has.Count.EqualTo(expectedDiscussion.Count));
+		CollectionAssert.AreEqual(expectedDiscussion, discussion);
+	}
+	
+	[TestCase("2026-MD0006.txt", 40)]
+	[TestCase("2026-MD0087.txt", null)]
+	[TestCase("2026-MD0089.txt", 5)]
+	[TestCase("2026-MD0090.txt", 5)]
+	public void CanParseWatchProbability(string testFile, int? expectedProbability)
+	{
+		var discussionText = GetTestFileContent<MesoscaleDiscussionParserTests>(testFile);
+		
+		var parser = new MesoscaleDiscussionParser(discussionText);
+		var probability = parser.ParseWatchProbability();
+
+		Assert.That(probability, Is.EqualTo(expectedProbability));
+	}
+	
 	[TestCase("2026-MD0089.txt")]
 	public void BoundaryIsParsed(string testFile)
 	{
