@@ -23,7 +23,15 @@ public partial class MesoscaleDiscussionParser
 		}
 	}
 
-	private static IReadOnlyList<string> ParseParagraphs(string toParse) => [.. ParagraphSplit().Split(toParse).Select(p => string.Join(" ", p.Split('\n').Select(line => line.Trim())))];
+	private static IReadOnlyList<string> ParseParagraphs(string toParse)
+	{
+		var paragraphs = ParagraphSplit().Split(toParse).Select(p => p.Trim()).Where(p => p.HasValue()).ToArray();
+		var header = string.Join("\n", paragraphs[0].Split('\n', StringSplitOptions.RemoveEmptyEntries).Select(line => line.Trim()));
+		var contentParagraphs = paragraphs.Skip(1)
+			.Select(p => string.Join(" ", p.Split('\n').Select(line => line.Trim())));
+
+		return [header, ..contentParagraphs];
+	}
 
 	public DateTimeOffset ParseIssued()
 	{
@@ -111,15 +119,15 @@ public partial class MesoscaleDiscussionParser
 	{
 		const string linePrefix = "DISCUSSION...";
 		var discussionIndex = _paragraphs.FindIndex(p => p.StartsWith(linePrefix, StringComparison.OrdinalIgnoreCase));
-		
+
 		if (discussionIndex < 0)
 		{
 			return null;
 		}
 
 		var discussionLines = _paragraphs.Skip(discussionIndex)
-		                                .TakeWhile(p => !p.StartsWith("..", StringComparison.OrdinalIgnoreCase))
-		                                .ToList();
+			.TakeWhile(p => !p.StartsWith("..", StringComparison.OrdinalIgnoreCase))
+			.ToList();
 
 		discussionLines[0] = discussionLines[0][linePrefix.Length..].Trim();
 
