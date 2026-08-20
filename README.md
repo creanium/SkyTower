@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/img/skytower-banner.png" alt="SkyTower — See It Coming" width="100%">
+  <img src="assets/img/skytower-banner.png" alt="SkyTower — See It Coming" style="width: 100%; border-radius: 1rem;">
 </p>
 
 # SkyTower Weather
